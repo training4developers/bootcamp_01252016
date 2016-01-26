@@ -1,0 +1,21 @@
+Front-End Web Development Bootcamp Outline - Day 1
+
+- Overview
+	- History of the Web
+	- Web Browser & Server Architecture
+	- HTML, CSS & JS
+- HTML
+	- Structuring Content
+	- Various Elements
+	- Content Categories
+	- HTML5 Semantic Elements
+	- Audio/Video & Shadow DOM
+- CSS Selectors
+	- Element, Id, Classes
+	- Attributes
+	- Combinators
+	- Specificity
+- CSS Font and Text Styling
+	- Color
+	- Font Family, Size, Weight, Style
+	- Text Decoration

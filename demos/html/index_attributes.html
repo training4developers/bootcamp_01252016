@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Our First Web Page</title>
+		<style>
+
+			p[sports-car='yes'][four-wheel-drive] {
+				color: fuchsia;
+				font-weight:bold;
+			}
+
+			[four-wheel-drive] {
+				color: blue;
+			}
+
+			[color^="b"] {
+				font-weight: bold;
+			}
+
+			[color$="r"] {
+				font-weight: bold;
+			}
+
+			[color*="l"] {
+				text-decoration: line-through;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div two-wheel-drive="no" sports-car="no" color="brown">Acura</div>
+		<div four-wheel-drive="yes" sports-car="no" color="black">Audi</div>
+		<div four-wheel-drive="yes" sports-car="no" color="yellow">Jeep</div>
+		<p four-wheel-drive="no" sports-car="yes" color="silver">Audi Convertible</p>
+
+	</body>
+</html>

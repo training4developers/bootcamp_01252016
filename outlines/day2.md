@@ -1,0 +1,34 @@
+Front-End Web Development Bootcamp Outline - Day 2
+
+- CSS Style Sources
+	- Inline Styles
+	- Style Element
+	- External Stylesheets via Link
+	- User Agent Stylesheets
+- CSS Selectors
+	- Pseudo Classes
+	- Pseudo Elements
+	- [CSS Diner Selector Game](http://flukeout.github.io/)
+- Additional Styles
+	- Background
+	- Borders
+	- Inherit & Initial
+		- [CSS Property List](https://www.w3.org/TR/CSS21/propidx.html)
+- Font Size & Accessibility
+	- Browser Settings - CodePen Demo
+	- Intuit Web Site Example - Fixed Line Height and Proportional Text
+- Accessibility Presentation (Ted Drake)
+- Boxes
+	- Box Model
+		- [CSS Box Model Demo](http://guyroutledge.github.io/box-model/)
+	- Box Generation
+		- Inline versus Block
+		- List Items and Menu
+	- Box Positioning
+		- Absolute Position Relative to Parents
+	- Box Floating
+- Grids
+	- Review Bootstrap
+	- Create a Float Grid
+- Media Queries
+- FlexBox

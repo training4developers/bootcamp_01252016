@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Icon Demo</title>
+		<style>
+
+			.icon {
+				line-height:24px;
+				vertical-align: middle;
+				display:inline-block;
+			}
+
+			.icon::before {
+				float:left;
+				width: 24px;
+				height: 24px;
+				content: "";
+				box-sizing:border-box;
+				margin-right:2px;
+			}
+
+			button.icon {
+				padding:10px;
+				font-size:125%;
+			}
+
+			.icon-dropbox::before {
+				background-image: url(glyphicons_free/glyphicons-social/png/glyphicons-social-2-dropbox.png);
+			}
+
+			.icon-dropbox::after {
+				content:"DropBox"
+			}
+
+			.icon-pinterest::before {
+				background-image: url(glyphicons_free/glyphicons-social/png/glyphicons-social-1-pinterest.png);
+			}
+
+			.icon-xing::before {
+				background-image: url(glyphicons_free/glyphicons-social/png/glyphicons-social-13-xing.png);
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<button href="#" class="icon icon-dropbox"></button>
+		<a href="#" class="icon icon-pinterest">Pinterest</a>
+		<span href="#" class="icon icon-xing">Xing</span>
+
+	</body>
+</html>
