@@ -1,44 +1,37 @@
 <!DOCTYPE html>
 
 <html>
+
 	<head>
-		<title>Icon Demo</title>
+		<title>CSS Demo</title>
 		<style>
 
-			.icon {
-				line-height:24px;
-				vertical-align: middle;
-				display:inline-block;
+			body {
+				margin:0;
+				padding:0;
+				height:100%;
 			}
 
-			.icon::before {
-				float:left;
-				width: 24px;
-				height: 24px;
-				content: "";
-				box-sizing:border-box;
-				margin-right:2px;
+			.container {
+				top:0; left:0; right:0; bottom:0;
+				background-color:yellow;
+				position:absolute;
+				overflow-x:hidden;
+				overflow-y:scroll;
+
+
+
 			}
 
-			button.icon {
-				padding:10px;
-				font-size:125%;
+			.chat-window {
+				right:50px;
+				bottom:0;
+				background-color: red;
+				position:absolute;
 			}
 
-			.icon-dropbox::before {
-				background-image: url(glyphicons_free/glyphicons-social/png/glyphicons-social-2-dropbox.png);
-			}
-
-			.icon-dropbox::after {
-				content:"DropBox"
-			}
-
-			.icon-pinterest::before {
-				background-image: url(glyphicons_free/glyphicons-social/png/glyphicons-social-1-pinterest.png);
-			}
-
-			.icon-xing::before {
-				background-image: url(glyphicons_free/glyphicons-social/png/glyphicons-social-13-xing.png);
+			div + div {
+				z-index: -100;
 			}
 
 		</style>
@@ -46,9 +39,26 @@
 
 	<body>
 
-		<button href="#" class="icon icon-dropbox"></button>
-		<a href="#" class="icon icon-pinterest">Pinterest</a>
-		<span href="#" class="icon icon-xing">Xing</span>
+		<div class="chat-window">Click Here For Help!</div>
+
+		<div class="container">
+
+		<!-- <div>Other Content</div> -->
+
+		<p>Bacon ipsum dolor amet shank biltong short loin, tongue boudin landjaeger porchetta capicola turkey corned beef jowl sirloin meatball sausage alcatra. Salami shankle filet mignon swine sausage corned beef turkey tongue pork cow venison alcatra jowl tenderloin. Shank ground round cupim fatback, capicola sausage bacon. Salami jerky filet mignon corned beef porchetta hamburger ball tip tri-tip turkey kevin chicken.</p>
+		<!-- <p>Pastrami brisket doner tenderloin. Jerky sausage ribeye, picanha beef ribs ground round pastrami. Jowl pastrami short loin, ground round pancetta corned beef beef jerky. Ham andouille tongue, beef ribs shank doner sirloin alcatra cow spare ribs picanha.</p>
+		<p>Shoulder drumstick porchetta, tenderloin chuck pork belly cupim. Turkey pork chop porchetta frankfurter brisket biltong spare ribs drumstick shoulder filet mignon shankle doner beef. Ham hock short loin sausage salami tenderloin alcatra brisket leberkas andouille bresaola boudin flank tail pastrami pancetta. Turducken porchetta meatball tail pork chop. Pastrami short ribs meatloaf bresaola, alcatra ham hock meatball porchetta ribeye shoulder. Boudin pig shank porchetta short ribs beef ribs ball tip. Rump tenderloin beef beef ribs t-bone capicola drumstick, meatloaf leberkas hamburger kielbasa.</p>
+		<p>Ground round biltong ball tip beef andouille short ribs frankfurter tail meatball venison shoulder. Biltong ground round cow, kielbasa meatball porchetta ham hock. Rump ground round ham jerky kevin. Strip steak prosciutto short ribs, tail pork chop cupim t-bone fatback jerky. Corned beef pork capicola drumstick. Frankfurter rump boudin chicken.</p>
+		<p>Boudin frankfurter doner ham hock shoulder tri-tip meatball jerky. T-bone flank brisket shank bresaola meatloaf jowl pig. Beef flank tongue spare ribs jerky, pork chop strip steak bresaola ham sirloin leberkas ball tip pancetta. Rump tongue beef ribs, doner pork belly pork loin sirloin capicola.</p>
+		<p>Bacon ipsum dolor amet shank biltong short loin, tongue boudin landjaeger porchetta capicola turkey corned beef jowl sirloin meatball sausage alcatra. Salami shankle filet mignon swine sausage corned beef turkey tongue pork cow venison alcatra jowl tenderloin. Shank ground round cupim fatback, capicola sausage bacon. Salami jerky filet mignon corned beef porchetta hamburger ball tip tri-tip turkey kevin chicken.</p>
+		<p>Pastrami brisket doner tenderloin. Jerky sausage ribeye, picanha beef ribs ground round pastrami. Jowl pastrami short loin, ground round pancetta corned beef beef jerky. Ham andouille tongue, beef ribs shank doner sirloin alcatra cow spare ribs picanha.</p>
+		<p>Shoulder drumstick porchetta, tenderloin chuck pork belly cupim. Turkey pork chop porchetta frankfurter brisket biltong spare ribs drumstick shoulder filet mignon shankle doner beef. Ham hock short loin sausage salami tenderloin alcatra brisket leberkas andouille bresaola boudin flank tail pastrami pancetta. Turducken porchetta meatball tail pork chop. Pastrami short ribs meatloaf bresaola, alcatra ham hock meatball porchetta ribeye shoulder. Boudin pig shank porchetta short ribs beef ribs ball tip. Rump tenderloin beef beef ribs t-bone capicola drumstick, meatloaf leberkas hamburger kielbasa.</p>
+		<p>Ground round biltong ball tip beef andouille short ribs frankfurter tail meatball venison shoulder. Biltong ground round cow, kielbasa meatball porchetta ham hock. Rump ground round ham jerky kevin. Strip steak prosciutto short ribs, tail pork chop cupim t-bone fatback jerky. Corned beef pork capicola drumstick. Frankfurter rump boudin chicken.</p>
+		<p>Boudin frankfurter doner ham hock shoulder tri-tip meatball jerky. T-bone flank brisket shank bresaola meatloaf jowl pig. Beef flank tongue spare ribs jerky, pork chop strip steak bresaola ham sirloin leberkas ball tip pancetta. Rump tongue beef ribs, doner pork belly pork loin sirloin capicola.</p> -->
+
+		</div>
+
 
 	</body>
+
 </html>

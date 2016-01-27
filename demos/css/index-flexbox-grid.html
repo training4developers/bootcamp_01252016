@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>CSS Demo</title>
+		<style>
+
+			body {
+				margin:0;
+				padding: 0;
+				height:100%;
+			}
+
+			.grid {
+				display: flex;
+				flex-direction: column;
+				box-sizing: border-box;
+				position:absolute;
+				top:0; left:0; right:0; bottom:0;
+			}
+
+			.row {
+				flex-grow:1;
+				display: flex;
+				border: 1px solid blue;
+				box-sizing:border-box;
+			}
+
+			.col-1, .col-2, .col-3 {
+				border: 1px solid green;
+				text-align: center;
+				box-sizing:border-box;
+			}
+
+			.col-1 {
+				flex-basis: 25%;
+			}
+
+			.col-2 {
+				flex-basis: 50%;
+			}
+
+			.col-3 {
+				flex-basis: 75%;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div class="grid">
+			<div class="row">
+				<div class="col-1">Col 1</div>
+				<div class="col-1">Col 2</div>
+				<div class="col-1">Col 3</div>
+				<div class="col-1">Col 4</div>
+			</div>
+			<div class="row">
+				<div class="col-2">Col 1</div>
+				<div class="col-1">Col 3</div>
+				<div class="col-1">Col 4</div>
+			</div>
+			<div class="row">
+				<div class="col-1">Col 1</div>
+				<div class="col-3">Col 2</div>
+			</div>
+		</div>
+	</body>
+
+</html>

@@ -1,8 +1,23 @@
 Front-End Web Development Bootcamp Outline - Day 3
 
+- Additional Styles
+	- Line Height
+	- Background
+	- Borders
+	- Inherit & Initial
+		- [CSS Property List](https://www.w3.org/TR/CSS21/propidx.html)
+- Box Positioning
+	- Absolute Position Relative to Parents
+	- Box Floating
+- Grids
+	- Review Bootstrap
+	- Create a Float Grid
+- Media Queries
+- FlexBox
+	- Create a FlexBox Grid
 - SASS
-- Vendor Specific Prefixing
-- Animation
+- Animation (quick overview and some demos)
 	- Transitions
 	- Transformation
 	- Animations
+	- Vendor Specific Prefixing & SASS

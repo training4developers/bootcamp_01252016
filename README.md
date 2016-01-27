@@ -13,3 +13,7 @@ Breaks:
 	2-3 per day as needed
 
 ## Class Introductions...
+
+## Links
+
+- [Ideaboardz](http://www.ideaboardz.com/for/Bootcamp/2448171)

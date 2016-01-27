@@ -1,0 +1,52 @@
+.box {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  transition: width 2s, height 4s; }
+
+.box.larger {
+  width: 200px;
+  height: 200px; }
+
+@keyframes example {
+  0% {
+    background-color: red;
+    top: 0px;
+    left: 0px;
+    transform: rotate(20deg); }
+  10% {
+    background-color: yellow;
+    top: 100px;
+    left: 300px;
+    transform: rotate(-20deg); }
+  20% {
+    background-color: blue;
+    top: 20px;
+    left: 0px;
+    transform: rotate(-90deg); }
+  70% {
+    background-color: purple;
+    top: 80px;
+    left: 300px;
+    transform: rotate(180deg); }
+  90% {
+    background-color: green;
+    top: 40px;
+    left: 0px;
+    transform: rotate(45deg); }
+  100% {
+    background-color: red;
+    top: 0px;
+    left: 0px;
+    transform: rotate(20deg); } }
+
+/* The element to apply the animation to */
+.color-box {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  background-color: red;
+  animation-name: example;
+  animation-duration: 20s;
+  animation-iteration-count: infinite; }

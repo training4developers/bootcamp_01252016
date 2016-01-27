@@ -1,0 +1,11 @@
+li:first-child {
+	color:blue;
+}
+
+body p:last-of-type {
+	color:red;
+}
+
+li:nth-child(3n+1) {
+	color:orange;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>CSS Demo</title>
+		<style>
+
+			#container {
+				margin:20px;
+				padding:20px;
+				border:2px solid green;
+				box-sizing: border-box;
+				position:relative;
+				top:300px;
+			}
+
+			.row {
+				margin:0px;
+				padding: 10px;
+				border: 2px solid blue;
+				position: static;
+			}
+
+			/*.row:nth-child(1) {
+				position: relative;
+			}*/
+
+			.row:nth-child(2) {
+				top:40px; left: 40px;
+				position:absolute;
+			}
+
+			.row:nth-child(3) {
+				top:40px; left: 100px;
+				position:fixed;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="container">
+			<div class="row">Box 1</div>
+			<div class="row">Box 2</div>
+			<div class="row">Box 3</div>
+		</div>
+
+	</body>
+
+</html>

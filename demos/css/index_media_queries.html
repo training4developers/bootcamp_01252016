@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>CSS Demo</title>
+		<!-- <link rel="stylesheet" media="(max-width: 800px)" href="example.css" /> -->
+		<style>
+
+			@media (max-width: 600px) {
+
+			}
+
+			@media print {
+				a::after {
+					content: " (" attr(href) ") "
+				}
+			}
+
+
+		</style>
+	</head>
+
+	<body>
+
+		<a href="http://www.intuit.com">Intuit</a>
+
+		<span>Test</span>
+
+	</body>
+
+</html>
