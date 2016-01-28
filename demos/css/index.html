@@ -7,64 +7,88 @@
 		<style>
 
 			body {
-				margin:0; padding:0;
+				margin:0;
+				padding:0;
 			}
 
-			.row {
-				border: 1px solid red;
-				overflow:auto;
-				width:100%;
-				box-sizing: border-box;
+			.my-box {
+
+				font-family: monospace;
+				font-size:12px;
+				font-style: italic;
+				font-weight: bold;
+
+				font: monospace 12px italic bold;
+
+				border-color:red;
+				border-width: 2px;
+				border-style: dashed;
+
+				border: red 2px dashed;
+
+
+
+
+				display:flex;
+				margin:10px;
+				padding:5px;
+				border:2px solid red;
+				/*position:absolute;
+				top:0; left:0; right:0; bottom:0;*/
+
+				-webkit-flex: ;
+				-moz-flex: ;
+				-ms-flex: ;
+				-o-flex: ;
+				flex: ;
+
+				/*flex-flow:row-reverse;*/
+				flex-direction: row;
+				flex-wrap:wrap;
+
+				row
+				row-reverse
+				column
+				column-reverse
+				wrap
+				wrap-reverse
 			}
 
-			.row::after {
-				clear:both;
-				content: "";
-				display:table;
+			.my-box > div {
+				border: 2px solid blue;
+				padding:10px;
+				width:500px;
 			}
 
-			/*.col-1, .col-2, .col-3, .col-4 {*/
-			[class*='col-']{
-				float:left;
-				border: 1px solid blue;
-				box-sizing: border-box;
-			}
-
-			.col-1 {
-				width:25%;
+			/*.col-1 {
+				flex-grow: 1;
 			}
 
 			.col-2 {
-				width:50%;
+				flex-grow: 2;
+				order: -1;
 			}
 
 			.col-3 {
-				width:75%;
+				flex-grow: 3;
 			}
 
 			.col-4 {
-				width:100%;
-			}
-
+				flex-grow: 4;
+			}*/
 
 		</style>
 	</head>
 
 	<body>
 
-		<div class="row">
+		<div class="my-box">
 
-			<div class="col-1">Box 1</div>
-			<div class="col-2">Box 2</div>
-			<div class="col-1">Box 3</div>
-
-		</div>
-
-		<div class="row">
-
-			<div class="col-1">Box 1</div>
-			<div class="col-1">Box 2</div>
-			<div class="col-2">Box 3</div>
+			<div class="col-4">Item 0</div>
+			<div class="col-2">Item 1</div>
+			<div class="col-3">Item 2</div>
+			<div class="col-1">Item 3</div>
+			<div class="col-2">Item 4</div>
 
 		</div>
 

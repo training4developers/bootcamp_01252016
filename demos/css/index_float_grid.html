@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>CSS Demo</title>
+		<style>
+
+			body {
+				margin:0; padding:0;
+			}
+
+			.row {
+				border: 1px solid red;
+				overflow:auto;
+				width:100%;
+				box-sizing: border-box;
+			}
+
+			.row::after {
+				clear:both;
+				content: "";
+				display:table;
+			}
+
+			/*.col-1, .col-2, .col-3, .col-4 {*/
+			[class*='col-']{
+				float:left;
+				border: 1px solid blue;
+				box-sizing: border-box;
+			}
+
+			.col-1 {
+				width:25%;
+			}
+
+			.col-2 {
+				width:50%;
+			}
+
+			.col-3 {
+				width:75%;
+			}
+
+			.col-4 {
+				width:100%;
+			}
+
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="row">
+
+			<div class="col-1">Box 1</div>
+			<div class="col-2">Box 2</div>
+			<div class="col-1">Box 3</div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-1">Box 1</div>
+			<div class="col-1">Box 2</div>
+			<div class="col-2">Box 3</div>
+
+		</div>
+
+	</body>
+
+</html>
