@@ -11,28 +11,35 @@
 				padding:0;
 			}
 
-			.container {
-				display: flex;
-				flex-flow: wrap;
-			}
-
-			.col-1 {
-				flex: 1 1 16%;
-			}
-			.col-2 { flex: 2 1 33%; }
-			.col-3 { flex: 3 1 50%; }
-			.col-4 { flex: 4 1 67%; }
-			.col-5 { flex: 5 1 83%; }
-			.col-6 { flex: 6 1 100%; }
-
-			[class*='col-'] {
+			.box {
 				position:relative;
-				border:1px solid red;
+				background-color: red;
+				transition: width 2s, height 4s;
 			}
 
-			p {
-				margin:40px;
+			@media screen and (max-width:600px) {
+				.box {
+					width:100px;
+					height:100px;
+				}
 			}
+
+			@media screen and (min-width:601px) {
+				.box {
+					width:500px;
+					height:500px;
+				}
+			}
+
+			@media print {
+
+				a::after {
+					content: " (" attr(href) ") "
+				}
+
+			}
+
+
 
 
 		</style>
@@ -40,41 +47,11 @@
 
 	<body>
 
-		<div class="container">
-			<div class="col-1">
-				<p>1</p>
-			</div>
-			<div class="col-1">
-				<p>2</p>
-			</div>
-			<div class="col-6">
-				3
-			</div>
-			<div class="col-1">
-				4
-			</div>
-			<div class="col-1">
-				5
-			</div>
-			<div class="col-1">
-				6
-			</div>
-			<div class="col-2">
-				1
-			</div>
-			<div class="col-2">
-				2
-			</div>
-			<div class="col-2">
-				3
-			</div>
-			<div class="col-3">
-				1
-			</div>
-			<div class="col-3">
-				2
-			</div>
-		</div>
+		<a href="http://www.intuit.com">Intuit</a>
+
+		<div class="box"></div>
+
+
 	</body>
 
 </html>
