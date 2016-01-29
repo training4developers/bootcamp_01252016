@@ -12,12 +12,4 @@ Front-End Web Development Bootcamp Outline - Day 3
 - Grids
 	- Review Bootstrap
 	- Create a Float Grid
-- Media Queries
-- FlexBox
-	- Create a FlexBox Grid
-- SASS
-- Animation (quick overview and some demos)
-	- Transitions
-	- Transformation
-	- Animations
-	- Vendor Specific Prefixing & SASS
+- Flexbox Overview

@@ -1,5 +1,55 @@
-$color: yellow;
+@import '_mixins';
+@import '_theme';
+@import '_reset';
 
-body {
-	color: $color;
+%base-col {
+	position:relative;
 }
+
+.col-1 {
+	@extend %base-col;
+	width:25%;
+}
+
+.col-2 {
+	@extend %base-col;
+	width:50%;
+}
+
+.col-3 {
+	@extend %base-col;
+	width:75%;
+}
+
+.col-4 {
+	@extend %base-col;
+	width:100%;
+}
+
+$numOfCols:60;
+@for $i from 1 through $numOfCols {
+  @include grid-col($i, $numOfCols);
+}
+
+.nice-box {
+	@include border-radius(6px);
+}
+
+body > ul  {
+	list-style-type: none;
+
+	li {
+		display:inline-block;
+		color:$color;
+	}
+
+	&:hover {
+		color:red;
+	}
+
+	+ p {
+		font-weight:bold;
+	}
+}
+
+// body > ul >

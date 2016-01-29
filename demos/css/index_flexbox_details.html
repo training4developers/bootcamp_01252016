@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>CSS Demo</title>
+		<style>
+
+			body {
+				margin:0;
+				padding:0;
+			}
+
+			.my-box {
+
+				margin:10px;
+				padding:5px;
+				border:2px solid red;
+				position:absolute;
+				top:0;left:0;bottom:0;right:0;
+
+				/* Display Scheme */
+
+				/* Can be flex or flex-inline */
+				display:flex;
+
+				/* Flexing Scheme */
+
+				/* Individual Properties */
+				/*flex-direction: row;*/
+				/*flex-wrap:nowrap;*/
+
+				/* Single property, only one of the values from either flex-direction or flex-wrap */
+				/* flex-flow:row; */
+
+				/* direction, wrap mapping to flow
+					row, no-wrap = row (default)
+					row, wrap = wrap
+					row-reverse, no-wrap = row-reverse
+					row-reverse, wrap = wrap-reverse
+					column, wrap does not apply = column
+					column-reverse, wrap does not apply = column-reverse
+				*/
+
+				/* distribute content along the main axis */
+				/*justify-content:space-between;*/
+
+				/* distribute content along the cross axis */
+				/*align-items:center;*/
+
+				/* distributes lines when content wraps forming multiple lines */
+				/*align-content:space-around;*/
+			}
+
+			.my-box > div {
+
+				border: 2px solid blue;
+				padding:10px;
+				width:100px;
+
+				/* flex property combines flex-grow, flex-shrink, flex-basis */
+				/* flex-grow: proportion of size compared to other boxes */
+				/* flex-shrink: can the box shrink */
+				/* flex-basis: initial size of the box */
+				/*flex: 1 1 auto;*/
+			}
+
+			.my-box > div:nth-child(3) {
+
+				/* set the order of the boxes for layout purposes */
+				/*order: -1;*/
+
+				/* adjust the cross axis alignment of one item */
+				/*align-self: flex-end;*/
+
+				/* described above */
+				/*flex: 2 0 10px;*/
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="my-box">
+
+			<div>Item 1</div>
+			<div>Item 2</div>
+			<div>Item 3</div>
+			<div>Item 4</div>
+
+		</div>
+
+	</body>
+
+</html>

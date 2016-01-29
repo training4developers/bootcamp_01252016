@@ -1,2 +1,214 @@
-body {
-  color: yellow; }
+body, p, h1, h2 {
+  margin: 0;
+  padding: 0; }
+
+.col-1, .col-2, .col-3, .col-4 {
+  position: relative; }
+
+.col-1 {
+  width: 25%; }
+
+.col-2 {
+  width: 50%; }
+
+.col-3 {
+  width: 75%; }
+
+.col-4 {
+  width: 100%; }
+
+.col-1 {
+  width: 1.66667%; }
+
+.col-2 {
+  width: 3.33333%; }
+
+.col-3 {
+  width: 5%; }
+
+.col-4 {
+  width: 6.66667%; }
+
+.col-5 {
+  width: 8.33333%; }
+
+.col-6 {
+  width: 10%; }
+
+.col-7 {
+  width: 11.66667%; }
+
+.col-8 {
+  width: 13.33333%; }
+
+.col-9 {
+  width: 15%; }
+
+.col-10 {
+  width: 16.66667%; }
+
+.col-11 {
+  width: 18.33333%; }
+
+.col-12 {
+  width: 20%; }
+
+.col-13 {
+  width: 21.66667%; }
+
+.col-14 {
+  width: 23.33333%; }
+
+.col-15 {
+  width: 25%; }
+
+.col-16 {
+  width: 26.66667%; }
+
+.col-17 {
+  width: 28.33333%; }
+
+.col-18 {
+  width: 30%; }
+
+.col-19 {
+  width: 31.66667%; }
+
+.col-20 {
+  width: 33.33333%; }
+
+.col-21 {
+  width: 35%; }
+
+.col-22 {
+  width: 36.66667%; }
+
+.col-23 {
+  width: 38.33333%; }
+
+.col-24 {
+  width: 40%; }
+
+.col-25 {
+  width: 41.66667%; }
+
+.col-26 {
+  width: 43.33333%; }
+
+.col-27 {
+  width: 45%; }
+
+.col-28 {
+  width: 46.66667%; }
+
+.col-29 {
+  width: 48.33333%; }
+
+.col-30 {
+  width: 50%; }
+
+.col-31 {
+  width: 51.66667%; }
+
+.col-32 {
+  width: 53.33333%; }
+
+.col-33 {
+  width: 55%; }
+
+.col-34 {
+  width: 56.66667%; }
+
+.col-35 {
+  width: 58.33333%; }
+
+.col-36 {
+  width: 60%; }
+
+.col-37 {
+  width: 61.66667%; }
+
+.col-38 {
+  width: 63.33333%; }
+
+.col-39 {
+  width: 65%; }
+
+.col-40 {
+  width: 66.66667%; }
+
+.col-41 {
+  width: 68.33333%; }
+
+.col-42 {
+  width: 70%; }
+
+.col-43 {
+  width: 71.66667%; }
+
+.col-44 {
+  width: 73.33333%; }
+
+.col-45 {
+  width: 75%; }
+
+.col-46 {
+  width: 76.66667%; }
+
+.col-47 {
+  width: 78.33333%; }
+
+.col-48 {
+  width: 80%; }
+
+.col-49 {
+  width: 81.66667%; }
+
+.col-50 {
+  width: 83.33333%; }
+
+.col-51 {
+  width: 85%; }
+
+.col-52 {
+  width: 86.66667%; }
+
+.col-53 {
+  width: 88.33333%; }
+
+.col-54 {
+  width: 90%; }
+
+.col-55 {
+  width: 91.66667%; }
+
+.col-56 {
+  width: 93.33333%; }
+
+.col-57 {
+  width: 95%; }
+
+.col-58 {
+  width: 96.66667%; }
+
+.col-59 {
+  width: 98.33333%; }
+
+.col-60 {
+  width: 100%; }
+
+.nice-box {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  border-radius: 6px; }
+
+body > ul {
+  list-style-type: none; }
+  body > ul li {
+    display: inline-block;
+    color: gold; }
+  body > ul:hover {
+    color: red; }
+  body > ul + p {
+    font-weight: bold; }
