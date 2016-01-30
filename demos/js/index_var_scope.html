@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			var t = 12;
+
+
+			function() {
+
+				t = 4;
+
+				console.log(t);
+
+
+				var t = 4;
+			}
+
+			if (true) {
+				//temporal dead zone
+
+				console.log(t);
+
+				let t = 10;
+
+			}
+
+			console.log(t);
+
+		</script>
+	</body>
+
+</html>

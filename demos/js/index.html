@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			var dileep = {
+				amt: 300,
+				address: {
+					city: "Sunnyvale",
+					zipCode: "94086"
+				}
+			};
+
+			var sohan = Object.create(dileep);
+			sohan.amt = 56;
+			sohan.address.city = "Hyderabad";
+
+			sohan.address = {
+				city: "Vologda"
+			};
+
+			// delete sohan.amt;
+			// delete sohan.amt;
+
+			console.log(sohan.address.city);
+			console.dir(sohan);
+
+		</script>
+	</body>
+
+</html>

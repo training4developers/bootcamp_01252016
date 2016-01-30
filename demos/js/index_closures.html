@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			function outer() {
+
+				var t = 3;
+
+				setTimeout(function() {
+					t = 5;
+				}, 2000);
+
+				return function inner() {
+					console.log(t);
+				};
+			}
+
+			var fn = outer();
+			fn();
+
+			setTimeout(fn, 3000);
+
+		</script>
+	</body>
+
+</html>

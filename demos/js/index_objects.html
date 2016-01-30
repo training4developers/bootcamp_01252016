@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			var o = {
+				firstName: "Bob",
+				lastName: "Smith",
+				"address-line": "1600 Pennsylvania Ave.",
+				age: 2,
+				intuitEmployee: false,
+				getFullName: function() {
+					return this.firstName + " " + this.lastName;
+				},
+				parents: {
+					mom: {
+						firstName: "June",
+						lastName: "Smith"
+					},
+					dad: {
+						firstName: "Vladimir",
+						lastName: "Smith"
+					}
+				}
+			};
+
+			var someProp = "firstName";
+			console.log(o.firstName);
+			console.log(o[someProp]);
+			console.log(o["address-line"]);
+
+			console.dir(o);
+
+			console.log(o.parents.mom.firstName);
+
+			function Donuts(kindOf, qty) {
+				this.kindOf = kindOf;
+				this.qty = qty;
+			}
+
+			Donuts("chocolate", 12);
+			console.log(window.kindOf);
+			console.log(window.qty);
+
+			var glazedDonuts = new Donuts("glazed", 30);
+
+			console.dir(glazedDonuts);
+
+
+
+		</script>
+	</body>
+
+</html>

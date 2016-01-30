@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			function doSomething() {
+				console.dir(this);
+			}
+
+			doSomething();
+
+			window.doSomething();
+
+			var t = {
+				id: 2,
+				doSomething: doSomething
+			};
+
+			t.doSomething();
+
+			console.log(t.doSomething === window.doSomething);
+
+			var person = {
+				getFullName: function(prefix, suffix) {
+					return prefix + " " + this.firstName + " " + this.lastName + " " + suffix;
+
+				}
+			};
+
+			var mom = Object.create(person);
+			mom.firstName = "Grace";
+			mom.lastName = "Greene";
+
+			var dad = Object.create(person);
+			dad.firstName = "Glenn";
+			dad.lastName = "Greene";
+
+			console.log(mom.getFullName());
+			console.log(dad.getFullName());
+			console.log(mom.getFullName === dad.getFullName);
+			console.dir(mom);
+			console.dir(dad);
+
+			console.dir(Object.getPrototypeOf(mom) === Object.getPrototypeOf(dad));
+
+			var brother = {
+				firstName: "Bob",
+				lastName: "Greene"
+			};
+
+			console.log(mom.getFullName.call(brother, "Mr.", "Jr."));
+
+			console.log(mom.getFullName.apply(brother, ["Mr.", "Jr."]));
+
+			var fn = mom.getFullName.bind(brother, "Some additional");
+			console.log(fn("last parameter"));
+
+
+		</script>
+	</body>
+
+</html>

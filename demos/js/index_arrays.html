@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			var g = {
+
+			};
+
+			g[0] = 1;
+			g[1] = 2;
+			g[2] = 3;
+			g[3] = 4;
+			console.dir(g);
+			console.log(g[0]);
+			console.log(g instanceof Array);
+
+			var t = [1,2,3,4];
+			console.dir(t);
+			console.log(t[0]);
+			console.log(t instanceof Array);
+
+			console.log(t[1]);
+
+			t.dileep = "Mounika";
+			t[1000] = "Sohan";
+			t.push({
+				firstName: "Michael"
+			});
+
+			console.dir(t);
+
+			function push(array, item) {
+
+				array[array.length] = item;
+
+			}
+
+			// var t2 = new Array(5,5);
+			// console.dir(t2);
+
+
+		</script>
+	</body>
+
+</html>
