@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			function __extend(child, parent) {
+				function __() {
+					this.constructor = child;
+					this._super = parent;
+				}
+				__.prototype = parent.prototype;
+				child.prototype = new __();
+			}
+
+			function __mixin(dest, src) {
+				for (var prop in src) {
+					if (src.hasOwnProperty(prop)) {
+						dest[prop] = src[prop];
+					}
+				}
+			}
+
+			function Model(instanceOptions) {
+				__mixin(this, instanceOptions);
+			}
+
+			Model.extend = function(prototypeOptions) {
+
+				var
+					initialize = prototypeOptions.initialize;
+
+				function ChildModel(instanceOptions) {
+					//this._super.call(this, instanceOptions);
+					initialize.call(this, instanceOptions);
+				}
+
+				// this = parent constructor function
+				__extend(ChildModel, this);
+
+				delete prototypeOptions.defaults;
+				delete prototypeOptions.initialize;
+
+				__mixin(ChildModel.prototype, prototypeOptions);
+
+				ChildModel.extend = Model.extend;
+
+				return childModel;
+			};
+
+
+			var model = new Model({
+				make: "Toyota", model: "Yarus", year: 2011
+			});
+			console.dir(model);
+
+			var Person = Model.extend({
+				defaults: {
+					firstName: "",
+					lastName: ""
+				},
+				initialize: function(options) {
+					this.firstName = options.firstName;
+					this.lastName = options.lastName;
+				},
+				getFullName: function() {
+					return this.firstName + " " + this.lastName;
+				}
+			});
+
+			var person = new Person({
+				firstName: "Bob",
+				lastName: "Smith"
+			});
+
+			console.dir(person);
+			console.log(person.getFullName());
+			console.dir(Person);
+
+			var Student = Person.extend({
+				defaults: {
+					firstName: "",
+					lastName: "",
+					studentId: ""
+				},
+				initialize: function(options) {
+					this.firstName = options.firstName;
+					this.lastName = options.lastName;
+					this.studentId = options.studentId;
+				},
+				getStudentInfo: function() {
+					return this.studentId + " " + this.lastName + ", " + this.firstName;
+				}
+			})
+
+			var student = new Student({
+				firstName: "Sean",
+				lastName: "Gillard",
+				studentId: "34"
+			});
+
+			console.dir(student);
+			console.log(student.getFullName());
+			console.log(student.getStudentInfo());
+
+
+		</script>
+	</body>
+
+</html>

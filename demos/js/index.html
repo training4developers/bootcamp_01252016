@@ -12,27 +12,26 @@
 
 			"use strict";
 
-			var dileep = {
-				amt: 300,
-				address: {
-					city: "Sunnyvale",
-					zipCode: "94086"
-				}
+			var person = {
+				firstName: "Bob",
+				lastName: "Smith"
 			};
 
-			var sohan = Object.create(dileep);
-			sohan.amt = 56;
-			sohan.address.city = "Hyderabad";
+			//Object.preventExtensions(person);
+			//Object.seal(person);
+			Object.freeze(person);
 
-			sohan.address = {
-				city: "Vologda"
-			};
+			console.log(Object.isExtensible(person));
+			console.log(Object.isSealed(person));
+			console.log(Object.isFrozen(person));
 
-			// delete sohan.amt;
-			// delete sohan.amt;
+			// Object.defineProperty(person, "firstName", {
+			// 	configurable: true,
+			// 	enumerable: false
+			// });
 
-			console.log(sohan.address.city);
-			console.dir(sohan);
+			person.firstName = "Timmy";
+
 
 		</script>
 	</body>

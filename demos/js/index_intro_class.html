@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			class Person {
+
+				constructor(firstName, lastName) {
+					this.firstName = firstName;
+					this.lastName = lastName;
+				}
+
+				getFullName() {
+					return this.firstName + " " + this.lastName;
+				}
+
+			}
+
+			function Person(firstName, lastName) {
+				this.firstName = firstName;
+				this.lastName = lastName;
+			}
+
+			Person.prototype.getFullName = function() {
+				return this.firstName + " " + this.lastName;
+			}
+
+			class Student extends Person {
+
+				constructor(studentId, firstName, lastName) {
+					super(firstName, lastName);
+					this.studentId = studentId;
+				}
+
+				getStudentInfo() {
+					return this.studentId + " " + this.lastName + ", " + this.firstName;
+				}
+			}
+
+			var person = new Person("Bob", "Smith");
+			console.log(person.getFullName());
+
+			console.log(typeof Student);
+			console.dir(new Student("1", "A", "B"));
+
+
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			class Account {
+
+				constructor(acctNum, acctName, openingBalance) {
+
+					if (!acctNum) throw Error("please specify an acct num");
+					if (!acctName) throw Error("please specify an acct name");
+
+					this._acctNum = acctNum;
+					this._acctName = acctName;
+					this._balance = parseInt(openingBalance, 10) || 0;
+					this._transactions = [];
+				}
+
+				get balance() {
+					return this._balance;
+				}
+
+				get transactions() {
+					return this._transactions;
+				}
+
+				deposit(transDate, transAmt) {
+					transAmt = parseInt(transAmt, 10);
+					this._transactions.push({
+						transDate: transDate,
+						transAmt: transAmt
+					});
+
+					this._balance += parseInt(transAmt);
+				}
+
+			}
+
+			class CheckingAccount extends Account {
+
+				constructor(acctNum, acctName, openingBalance) {
+					super(acctNum, acctName, openingBalance);
+				}
+
+				check(checkNum, transDate, transPayee, transAmt) {
+					transAmt = parseInt(transAmt, 10);
+					this._transactions.push({
+						checkNum: checkNum,
+						transDate: transDate,
+						transPayee: transPayee,
+						transAmt: transAmt
+					});
+
+					this._balance -= parseInt(transAmt);
+				}
+
+				static create(acctNum, acctName, openingBalance) {
+					return new this(acctNum, acctName, openingBalance);
+				}
+
+			}
+
+			var checkingAccount = CheckingAccount.create("1", "Eric", 100);
+			checkingAccount.deposit("02/01/2016", 1000);
+			checkingAccount.check(1000, "02/01/2016", "Keya's Girl Scout Cookies", 34.00);
+			console.dir(checkingAccount.balance);
+			console.dir(checkingAccount.transactions);
+
+
+
+		</script>
+	</body>
+
+</html>

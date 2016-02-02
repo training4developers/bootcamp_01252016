@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			function Person(firstName, lastName) {
+				this.firstName = firstName;
+				this.lastName = lastName;
+			}
+
+			Person.prototype.getFullName = function() {
+				return this.firstName + " " + this.lastName;
+			};
+
+			var person = new Person("Dan", "Daniels");
+			console.log(person.getFullName());
+
+			var person2 = new Person("Anne", "McDaniels");
+			console.log(person2.getFullName());
+			console.log(person.getFullName === person2.getFullName);
+			console.log(Person.prototype.getFullName === person.getFullName);
+
+
+		</script>
+	</body>
+
+</html>

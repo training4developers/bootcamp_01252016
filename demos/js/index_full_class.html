@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			var checkingAccount = { };
+
+			// Object.defineProperty(checkingAccount, "balance", {
+			// 	configurable: false,
+			// 	enumerable: true,
+			// 	writable: true,
+			// 	value: 1000000
+			// });
+			//
+			// Object.defineProperty(checkingAccount, "balance", {
+			// 	configurable: true,
+			// 	enumerable: true,
+			// 	writable: false,
+			// 	value: 1000000
+			// });
+
+			// Object.defineProperty(checkingAccount, "balance", {
+			// 	configurable: true,
+			// 	enumerable: true,
+			// 	get: function() {
+			// 		console.log("called getter...");
+			// 		return this._balance;
+			// 	},
+			// 	set: function(value) {
+			// 		console.log("called setter...");
+			// 		this._balance = value;
+			// 	}
+			// });
+
+			// checkingAccount.balance = 100;
+			//
+			// console.dir(checkingAccount);
+			//
+			// for (var prop in checkingAccount) {
+			// 	console.log(prop);
+			// }
+
+
+			var Person = class {
+
+				constructor(firstName, lastName) {
+					this._firstName = firstName;
+					this.lastName = lastName;
+				}
+
+				get firstName() {
+					console.log("first name getter");
+					return this._firstName;
+				}
+
+				set firstName(value) {
+					console.log("first name setter");
+					this._firstName = value;
+				}
+
+				getFullName() {
+					return this.firstName + " " + this.lastName;
+				}
+
+				static create(firstName, lastName) {
+					return new Person(firstName, lastName);
+				}
+			};
+
+			var person = Person.create("Bob", "Smith");
+			console.log(person.getFullName());
+			console.dir(Person);
+
+
+		</script>
+	</body>
+
+</html>

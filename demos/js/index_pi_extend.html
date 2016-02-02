@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			function Person(firstName, lastName) {
+				this.firstName = firstName;
+				this.lastName = lastName;
+			}
+
+			Person.prototype.getFullName = function() {
+				return this.firstName + " " + this.lastName;
+			};
+
+			function Student(studentId, firstName, lastName) {
+				this._super.call(this, firstName, lastName);
+				this.studentId = studentId;
+			}
+
+			__extend(Student, Person);
+
+			// Student.prototype = Person.prototype;
+			// Student.prototype = Object.create(Person.prototype);
+			// Student.prototype.constructor = Student;
+			// Student.prototype._super = Person;
+
+			// both child and parent should be constructor functions
+
+			function __extend(child, parent) {
+				function __() {
+					this.constructor = child;
+					this._super = parent;
+				}
+				__.prototype = parent.prototype;
+				child.prototype = new __();
+			}
+
+			Student.prototype.getStudentInfo = function() {
+				return this.studentId + " " + this.lastName + ", " + this.firstName;
+			};
+
+			var student = new Student("1", "Dan", "Daniels");
+			console.log(student.getFullName());
+			console.log(student.getStudentInfo());
+			console.dir(student);
+
+		</script>
+	</body>
+
+</html>

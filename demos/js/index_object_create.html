@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Introduction to JavaScript</title>
+
+	</head>
+
+	<body>
+		<script>
+
+			"use strict";
+
+			function Person(firstName, lastName) {
+				this.firstName = firstName;
+				this.lastName = lastName;
+			}
+
+			var p = new Person("Jim", "Stevens");
+
+			var p = Person.call({ }, "Jim", "Stevens");
+
+
+
+			var person = {
+				firstName: "Bob",
+				lastName: "Smith"
+			};
+
+			var childOfPerson = Object.create(person);
+			childOfPerson.name= "childOfPerson";
+
+			function objectCreate(parent) {
+				function __() { }
+				__.prototype = parent;
+				return new __();
+			}
+
+			var childOfPerson2 = objectCreate(person);
+			childOfPerson2.name= "childOfPerson2";
+
+			// console.dir(childOfPerson);
+			// console.dir(childOfPerson2);
+
+			function Intuit() {}
+			Intuit.prototype.constructor = function() {};
+
+			console.dir(Intuit);
+
+
+		</script>
+	</body>
+
+</html>
