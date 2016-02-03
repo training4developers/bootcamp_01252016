@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>DOM Demonstrations</title>
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+		<div id="demo" class="important priority special">
+			<b>Hello World!</b> This is so much fun!
+		</div>
+		<div>more content</div>
+		<div>some more content</div>
+		<script>
+
+				require(["dojo/dom", "dojo/query", "dojo/dom-construct",
+					"dojo/dom-attr", "dojo/dom-class", "jquery"],
+					function rainbowUnicorn(dom, query, domConstruct, domAttr, domClass, $) {
+
+						var divElement = document.createElement("div");
+						divElement.id = "test-element";
+						divElement.classList.add("test");
+						divElement.setAttribute("data-field", "some-value");
+
+						// most people do it...
+						var divElement2 = $("<div></div>");
+						divElement2.prop("id", "test-element2");
+						divElement2.addClass("test");
+						divElement2.attr("data-field", "some-value");
+
+						console.log($("<div></div>")
+							.prop("id", "test-element2").addClass("test")
+							.attr("data-field", "some-value").prop("outerHTML"));
+
+						// domConstruct.toDOM("<div></div>");
+						var divElement3 = domConstruct.create("div");
+						divElement3.id = "text-element3";
+						domClass.add(divElement3, "test");
+						domAttr.set(divElement3, "data-field", "some-value");
+
+						console.log(divElement3.outerHTML);
+
+
+					});
+
+
+		</script>
+	</body>
+</html>

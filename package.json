@@ -1,0 +1,27 @@
+{
+  "name": "bootcamp_01252016",
+  "version": "1.0.0",
+  "description": "## Instructor",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/training4developers/bootcamp_01252016.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/training4developers/bootcamp_01252016/issues"
+  },
+  "homepage": "https://github.com/training4developers/bootcamp_01252016#readme"
+}

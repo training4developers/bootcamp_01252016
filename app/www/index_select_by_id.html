@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>DOM Demonstrations</title>
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+		<div id="demo" class="important priority special">
+			<b>Hello World!</b> This is so much fun!
+		</div>
+		<script>
+
+			require(["dojo/dom", "jquery"], function(dom, $) {
+
+				console.log(document.getElementById("demo").innerHTML);
+				console.log(document.querySelector("#demo").innerHTML);
+				console.log(document.querySelectorAll("#demo")[0].innerHTML);
+				console.log($("#demo").html());
+				console.log(dom.byId("demo").innerHTML);
+
+				console.log(dom.isDescendant($("b")[0], dom.byId("demo")));
+
+
+			});
+
+
+		</script>
+	</body>
+</html>

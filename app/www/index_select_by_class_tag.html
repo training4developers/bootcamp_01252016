@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>DOM Demonstrations</title>
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+		<div id="demo" class="important priority special">
+			<b>Hello World!</b> This is so much fun!
+		</div>
+		<div>more content</div>
+		<div>some more content</div>
+		<script>
+
+				require(["dojo/query", "jquery"], function(query, $) {
+
+					console.log(document.getElementsByTagName("div"));
+					console.log(document.querySelector("div"));
+					console.log($("div"));
+					console.log(query("div"));
+
+					console.log(document.getElementsByClassName("priority"));
+					console.log(document.querySelector(".priority"));
+					console.log($(".priority"));
+					console.log(query(".priority"));
+
+
+				});
+
+
+		</script>
+	</body>
+</html>

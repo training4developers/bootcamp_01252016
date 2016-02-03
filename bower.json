@@ -1,0 +1,23 @@
+{
+  "name": "bootcamp_01252016",
+  "description": "## Instructor",
+  "main": "Gruntfile.js",
+  "authors": [
+    "Eric W. Greene <eric@ericwgreene.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/training4developers/bootcamp_01252016",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/www/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "dojo": "~1.10.4"
+  }
+}

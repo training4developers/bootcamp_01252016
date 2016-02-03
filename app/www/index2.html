@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>DOM Demonstrations</title>
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+
+		<div id="demo">Hello World!</div>
+
+		<script>
+
+			// require(["dojo/dom", "jquery"], function(dom, $) {
+			//
+			// 	console.log(document.getElementById("demo").innerHTML);
+			// 	console.log(document.querySelector("#demo").innerHTML);
+			// 	console.log($("#demo").html());
+			// 	console.log(dom.byId("demo").innerHTML);
+			//
+			// });
+
+			"use strict";
+
+			function* getValues() {
+
+				// console.log("yielding 1");
+				// yield 1;
+				// console.log("yielding 2");
+				// yield 2;
+				// console.log("yielding 3");
+				// yield 3;
+
+				var x = 10;
+				while(x--) {
+					console.log("yielding " + x);
+					yield x;
+				}
+
+			}
+
+			function getValues2() {
+				var x = 10, list = [];
+				while(x--) {
+					console.log("pushing " + x);
+					list.push(x);
+				}
+				return list
+			}
+
+			for (let v of getValues()) {
+				console.log(v);
+				console.log("loop");
+			}
+
+			for (let v of getValues2()) {
+				console.log(v);
+				console.log("loop");
+			}
+
+
+
+			var account = {
+				name: "Eric",
+				acctNum: "1212",
+				transactions: [
+					{ id: 1, amt: 100 },
+					{ id: 2, amt: 200 },
+					{ id: 3, amt: 300 }
+				]
+			};
+
+			var uniqueId = Symbol("primary");
+			account[uniqueId] = 13454;
+
+			var rememberMe = uniqueId;
+			uniqueId = Symbol("secondary");
+
+			account[uniqueId] = 13454;
+
+			console.log(uniqueId === rememberMe);
+
+			console.dir(Object.getOwnPropertySymbols(account));
+
+
+			account[Symbol.iterator] = function*() {
+
+				var x = 0;
+				while (x<this.transactions.length) {
+					yield this.transactions[x];
+					x++;
+				}
+
+			};
+
+			for (let transaction of account) {
+				console.log(transaction);
+			}
+
+			// var list = getValues();
+			// console.dir(list[Symbol.iterator]);
+
+		</script>
+
+	</body>
+</html>

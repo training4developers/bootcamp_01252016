@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>DOM Demonstrations</title>
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+		<div id="demo" class="important priority special">
+			<b>Hello World!</b> This is so much fun!
+		</div>
+		<div>more content</div>
+		<div>some more content</div>
+		<script>
+
+				var fn;
+
+				require(["dojo/dom", "dojo/query", "dojo/dom-construct", "jquery"],
+					function rainbowUnicorn(dom, query, domContruct, $) {
+
+						var divElement = document.createElement("div");
+						divElement.id = "test-element";
+						divElement.classList.add("test");
+
+						fn = function spaghettiMonster() {
+							console.log(divElement.id);
+						};
+
+						setTimeout(function() {
+							fn = undefined;
+							console.log("timeout expired");
+						}, 20000);
+
+						console.dir(divElement);
+
+
+					});
+
+
+		</script>
+	</body>
+</html>
