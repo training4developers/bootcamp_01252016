@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>DOM Demonstrations</title>
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+		<style>
+			.red-box {
+				position:relative;
+				float:left;
+				background-color: red;
+				height:150px;
+				width:150px;
+			}
+
+			.blue-box {
+				position:relative;
+				float:right;
+				background-color: blue;
+				height:250px;
+				width:250px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<form action="/api/upload" enctype="multipart/form-data" method="post">
+
+			<label>Select File: <input type="file" name="demofile"></label>
+
+			<button>Upload Me!</button>
+
+		</form>
+
+		<div class="red-box" draggable="true"></div>
+		<div class="blue-box"></div>
+
+
+		<script>
+
+				require(["dojo/dom", "dojo/query", "dojo/dom-construct",
+					"dojo/dom-attr", "dojo/dom-class", "jquery"],
+					function (dom, query, domConstruct, domAttr, domClass, $) {
+
+						var
+							redBox = document.getElementsByClassName("red-box")[0],
+							blueBox = document.getElementsByClassName("blue-box")[0];
+
+						redBox.addEventListener('dragstart', function(e) {
+							console.log("drag start");
+							e.dataTransfer.setData("dragTarget", e.target.id = e.target.id || "dragitem");
+						});
+
+						blueBox.addEventListener('dragover', function(e) {
+							e.preventDefault();
+							console.log("dragging over");
+						});
+
+						blueBox.addEventListener('drop', function(e) {
+							e.preventDefault();
+							console.log("drop");
+
+							var
+								dragTarget = document.getElementById(e.dataTransfer.getData("dragTarget"));
+							e.target.appendChild(dragTarget);
+
+							if (dragTarget.id === "dragitem") {
+								dragTarget.id = undefined;
+							}
+						});
+
+					});
+
+
+		</script>
+	</body>
+</html>

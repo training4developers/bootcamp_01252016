@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>DOM Demonstrations</title>
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+		<div>
+		<button id="click-me">Click Me!</button>
+		</div>
+		<script>
+
+				require(["dojo/query", "dojo/on", "jquery"],
+					function (query, on, $) {
+
+						var
+							body = document.getElementsByTagName("body")[0],
+							button = document.getElementsByTagName("button")[0],
+							div = document.getElementsByTagName("div")[0];
+
+						function clickMe(e) {
+							console.log("button clicked: " + e.target.id);
+
+						}
+
+						body.addEventListener("click", function(e) {
+							console.log("body clicked - capture: " + e.target.id);
+						}, true);
+
+						body.addEventListener("click", function(e) {
+							console.log("body clicked - bubble: " + e.target.id);
+						}, false);
+
+						div.addEventListener("click", function(e) {
+							console.log("div clicked - capture: " + e.target.id);
+						}, true);
+
+						div.addEventListener("click", function(e) {
+							console.log("div clicked - bubble: " + e.target.id);
+						}, false);
+
+						button.addEventListener("click", clickMe);
+
+						//button.removeEventListener("click", clickMe);
+
+
+					});
+
+
+		</script>
+	</body>
+</html>

@@ -4,55 +4,137 @@
 
 	<head>
 		<title>DOM Demonstrations</title>
-		<script src="js/config.js"></script>
-		<script src="libs/dojo/dojo.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
 	</head>
 
 	<body>
-		<div id="demo" class="important priority special">
-			<b>Hello World!</b> This is so much fun!
-		</div>
-		<div>more content</div>
-		<div>some more content</div>
 		<table>
 			<tr>
-				<td>Test</td><td><button>Click Me</button></td>
+				<td>1</td><td><button>Edit</button></td>
 			</tr>
 			<tr>
-				<td>Test</td><td><button>Click Me</button></td>
+				<td>2</td><td><button>Edit</button></td>
 			</tr>
 			<tr>
-				<td>Test</td><td><button>Click Me</button></td>
+				<td>3</td><td><button>Edit</button></td>
 			</tr>
 			<tr>
-				<td>Test</td><td><button>Click Me</button></td>
+				<td>4</td><td><button>Edit</button></td>
 			</tr>
 			<tr>
-				<td>Test</td><td><button>Click Me</button></td>
+				<td>5</td><td><button>Edit</button></td>
 			</tr>
 			<tr>
-				<td>Test</td><td><button>Click Me</button></td>
-			</tr>
-			<tr>
-				<td>Test</td><td><button>Click Me</button></td>
+				<td>6</td><td><button>Edit</button></td>
 			</tr>
 		</table>
 		<script>
 
-				require(["dojo/dom", "dojo/query", "dojo/dom-construct",
-					"dojo/dom-attr", "dojo/dom-class", "jquery"],
-					function rainbowUnicorn(dom, query, domConstruct, domAttr, domClass, $) {
+			$("table").on("click", "button", function(e) {
+				console.log("button: " + $(e.target).closest("tr").find("td:first-child").text());
+			});
 
-						var e = document.getElementById("click-me");
+			var eventFns = {};
 
-						$("button").on("click", function(e) {
-							$(e.target).closest("tr").find("td:first-child").css("color", "red");
-						})
+			function on(selector, eventName, handlerFn) {
 
-						//console.dir($(e).closest("tr").find("td:first-child").css("color", "red"));
+				if (!eventFns[selector]) {
+					eventFns[selector] = {};
+				}
+
+				if (!eventFns[selector][eventName]) {
+					eventFns[selector][eventName] = function(e) {
+						eventFns[selector][eventName].handlers.forEach(function(handler) {
+							handler(e);
+						});
+					}
+					eventFns[selector][eventName].handlers = [];
+
+					var children = document.querySelectorAll(selector);
+					for(var i=0; i<children.length; i++) {
+						children[i].addEventListener(eventName, eventFns[selector][eventName]);
+					}
+				}
+
+				eventFns[selector][eventName].handlers.push(handlerFn);
+			}
+
+			function off(selector, eventName, handlerFn) {
+
+				var children = document.querySelectorAll(selector);
+				for(var i=0; i<children.length; i++) {
+					console.log(eventFns[selector][eventName]);
+					children[i].removeEventListener(eventName, eventFns[selector][eventName]);
+				}
+
+			}
+
+			on("button", "click", function() {
+				console.log("I was clicked!");
+			});
+
+			off("button", "click");
 
 
-					});
+			// function live(selector, eventName, handlerFn) {
+			// 	$("body").on(eventName, selector, handlerFn);
+			// }
+
+			//
+			// $("button").live("click", function(e) {
+			// 	console.log("button: " + $(e.target).closest("tr").find("td:first-child").text());
+			// });
+			//
+			// $("table").append("<tr><td>7</td><td><button>Edit</button></td></tr>");
+			//
+			// $("button").on("click", function(e) {
+			// 	console.log("button: " + $(e.target).closest("tr").find("td:first-child").text());
+			// });
+			//
+			// $("table").append("<tr><td>7</td><td><button>Edit</button></td></tr>");
+			//
+			// // $("button").on("click", function(e) {
+			// // 	console.log("button: " + $(e.target).closest("tr").find("td:first-child").text());
+			// // });
+			//
+			// $("table").append("<tr><td>7</td><td><button>Edit</button></td></tr>");
+			//
+			// // $("button").on("click", function(e) {
+			// // 	console.log("button: " + $(e.target).closest("tr").find("td:first-child").text());
+			// // });
+			// //
+			// // var
+			// // 	body = document.getElementsByTagName("body")[0],
+			// // 	button = document.getElementsByTagName("button")[0],
+			// // 	div = document.getElementsByTagName("div")[0];
+			// //
+			// // function clickMe(e) {
+			// // 	console.log("button clicked: " + e.target.id);
+			// //
+			// // }
+			// //
+			// // body.addEventListener("click", function(e) {
+			// // 	console.log("body clicked - capture: " + e.target.id);
+			// // }, true);
+			// //
+			// // body.addEventListener("click", function(e) {
+			// // 	console.log("body clicked - bubble: " + e.target.id);
+			// // }, false);
+			// //
+			// // div.addEventListener("click", function(e) {
+			// // 	console.log("div clicked - capture: " + e.target.id);
+			// // }, true);
+			// //
+			// // div.addEventListener("click", function(e) {
+			// // 	console.log("div clicked - bubble: " + e.target.id);
+			// // }, false);
+			// //
+			// button.addEventListener("click", clickMe);
+			//
+			// button.removeEventListener("click", clickMe);
+			//
+
+
 
 
 		</script>
