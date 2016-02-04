@@ -7,6 +7,11 @@ module.exports = function(grunt) {
 			rootFolder: "app/www",
 			port: 8080,
 			uploadFolder: "app/uploads/"
+		},
+		mongoServer: {
+			host: "localhost",
+			port: 27017,
+			dbName: "Intuit"
 		}
 	});
 

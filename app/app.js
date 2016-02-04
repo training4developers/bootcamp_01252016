@@ -6,7 +6,8 @@ module.exports = function(config) {
 		http = require("http"),
 		express = require("express"),
 		bodyParser = require("body-parser"),
-		multer = require("multer");
+		multer = require("multer"),
+		mongoose = require("mongoose");
 
 	let
 		app = express(),
@@ -21,11 +22,15 @@ module.exports = function(config) {
 		}),
 		upload = multer({ storage: storage });
 
-	app.use("/api", bodyParser.json());
+	mongoose.connect(`mongodb://${config.mongoServer.host}:${config.mongoServer.port}/${config.mongoServer.dbName}`);
 
 	app.post('/api/upload', upload.single('demofile'), function(req, res, next) {
 		res.send("uploaded!");
 	});
+
+	app.use("/api", bodyParser.json());
+
+	app.use("/api", require("./routers/default")("account"));
 
 	app.use(express.static(config.webServer.rootFolder));
 
