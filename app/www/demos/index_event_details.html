@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>DOM Demonstrations</title>
+	</head>
+
+	<body>
+
+		<label data-field="account-number">Account Number:
+			<input type="text" name="accountNumber">
+		</label>
+
+		<script>
+
+			// function accountNumberKeyUpHandler(e) {
+			// 	console.log("first event handler");
+			// 	console.dir(this);
+			// 	console.dir(arguments);
+			// 	console.dir(e);
+			// 	e.stopPropagation();
+			// 	//e.stopImmediatePropagation();
+			// }
+			//
+			// function accountNumberKeyUpHandler2(e) {
+			// 	console.log("second event handler");
+			// 	console.dir(this);
+			// 	console.dir(arguments);
+			// 	console.dir(e);
+			// }
+
+			function accountNumberKeyUpHandler(outString, e) {
+				console.log(outString);
+				console.dir(this);
+				console.dir(arguments);
+				console.dir(e);
+			}
+
+			function getElement(selector, errorMessage) {
+				var element = document.querySelector(selector);
+				if (!element) {
+					throw Error(errorMessage);
+				}
+				return element;
+			}
+
+			var
+				labelAccountNumber = getElement("label[data-field='account-number']", "Account Number label not available."),
+				inputAccountNumber = getElement("input[name='accountNumber']", "Account Number input field not available.");
+
+			console.dir(this);
+
+			labelAccountNumber
+				.addEventListener(
+					"keyup",
+					accountNumberKeyUpHandler.bind(labelAccountNumber, "Custom Message"),
+					true);
+
+			labelAccountNumber.addEventListener("keyup", accountNumberKeyUpHandler, false);
+			inputAccountNumber.addEventListener("keyup", accountNumberKeyUpHandler, true);
+			inputAccountNumber.addEventListener("keyup", accountNumberKeyUpHandler, true);
+
+
+
+		</script>
+	</body>
+</html>

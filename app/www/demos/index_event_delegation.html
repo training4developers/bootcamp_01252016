@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>DOM Demonstrations</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+	</head>
+
+	<body>
+		<table>
+			<tr>
+				<td>1</td><td><button>Edit</button></td>
+			</tr>
+			<tr>
+				<td>2</td><td><button>Edit</button></td>
+			</tr>
+			<tr>
+				<td>3</td><td><button>Edit</button></td>
+			</tr>
+			<tr>
+				<td>4</td><td><button>Edit</button></td>
+			</tr>
+			<tr>
+				<td>5</td><td><button>Edit</button></td>
+			</tr>
+			<tr>
+				<td>6</td><td><button>Edit</button></td>
+			</tr>
+		</table>
+		<script>
+
+			$("table").on("click", "button", function(e) {
+				console.log("button: " + $(e.target).closest("tr").find("td:first-child").text());
+			});
+
+			var eventFns = {};
+
+			function on(selector, eventName, handlerFn) {
+
+				if (!eventFns[selector]) {
+					eventFns[selector] = {};
+				}
+
+				if (!eventFns[selector][eventName]) {
+					eventFns[selector][eventName] = function(e) {
+						eventFns[selector][eventName].handlers.forEach(function(handler) {
+							handler(e);
+						});
+					}
+					eventFns[selector][eventName].handlers = [];
+
+					var children = document.querySelectorAll(selector);
+					for(var i=0; i<children.length; i++) {
+						children[i].addEventListener(eventName, eventFns[selector][eventName]);
+					}
+				}
+
+				eventFns[selector][eventName].handlers.push(handlerFn);
+			}
+
+			function off(selector, eventName, handlerFn) {
+
+				var children = document.querySelectorAll(selector);
+				for(var i=0; i<children.length; i++) {
+					console.log(eventFns[selector][eventName]);
+					children[i].removeEventListener(eventName, eventFns[selector][eventName]);
+				}
+
+			}
+
+			on("button", "click", function() {
+				console.log("I was clicked!");
+			});
+
+			off("button", "click");
+
+
+			// function live(selector, eventName, handlerFn) {
+			// 	$("body").on(eventName, selector, handlerFn);
+			// }
+
+			//
+			// $("button").live("click", function(e) {
+			// 	console.log("button: " + $(e.target).closest("tr").find("td:first-child").text());
+			// });
+			//
+			// $("table").append("<tr><td>7</td><td><button>Edit</button></td></tr>");
+			//
+			// $("button").on("click", function(e) {
+			// 	console.log("button: " + $(e.target).closest("tr").find("td:first-child").text());
+			// });
+			//
+			// $("table").append("<tr><td>7</td><td><button>Edit</button></td></tr>");
+			//
+			// // $("button").on("click", function(e) {
+			// // 	console.log("button: " + $(e.target).closest("tr").find("td:first-child").text());
+			// // });
+			//
+			// $("table").append("<tr><td>7</td><td><button>Edit</button></td></tr>");
+			//
+			// // $("button").on("click", function(e) {
+			// // 	console.log("button: " + $(e.target).closest("tr").find("td:first-child").text());
+			// // });
+			// //
+			// // var
+			// // 	body = document.getElementsByTagName("body")[0],
+			// // 	button = document.getElementsByTagName("button")[0],
+			// // 	div = document.getElementsByTagName("div")[0];
+			// //
+			// // function clickMe(e) {
+			// // 	console.log("button clicked: " + e.target.id);
+			// //
+			// // }
+			// //
+			// // body.addEventListener("click", function(e) {
+			// // 	console.log("body clicked - capture: " + e.target.id);
+			// // }, true);
+			// //
+			// // body.addEventListener("click", function(e) {
+			// // 	console.log("body clicked - bubble: " + e.target.id);
+			// // }, false);
+			// //
+			// // div.addEventListener("click", function(e) {
+			// // 	console.log("div clicked - capture: " + e.target.id);
+			// // }, true);
+			// //
+			// // div.addEventListener("click", function(e) {
+			// // 	console.log("div clicked - bubble: " + e.target.id);
+			// // }, false);
+			// //
+			// button.addEventListener("click", clickMe);
+			//
+			// button.removeEventListener("click", clickMe);
+			//
+
+
+
+
+		</script>
+	</body>
+</html>

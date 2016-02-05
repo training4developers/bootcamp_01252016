@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>DOM Demonstrations</title>
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+
+		<script>
+
+			"use strict";
+
+			require(["jquery","underscore","backbone"], function($, _, Backbone) {
+
+				// function Person(name) {
+				// 	this.name = name;
+				// 	_.extend(this, Backbone.Events);
+				// }
+
+				class Person {
+					constructor(name) {
+						this.name = name;
+						_.extend(this, Backbone.Events);
+					}
+				}
+
+				class Unicorn {
+
+					constructor() {
+						_.extend(this, Backbone.Events);
+					}
+
+					run() {
+						setTimeout(() => {
+							console.log("stopped running");
+							this.trigger("tired", {
+								status: "finished running"
+							});
+						}, 2000);
+					}
+
+					setOwner(person) {
+						person.listenTo(this, "tired", function() {
+							console.log(person.name + "'s unicorn marshmallow is tired");
+						});
+					}
+				}
+
+				var komal = new Person("Komal Bhatia");
+				var marshmallow = new Unicorn();
+				marshmallow.setOwner(komal);
+				marshmallow.run();
+			});
+
+		</script>
+
+	</body>
+</html>
