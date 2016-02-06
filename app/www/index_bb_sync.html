@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>UI Grid Application</title>
+		<link href="css/site.css" rel="stylesheet">
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+
+		<script>
+
+			"use strict";
+
+			//require(["jquery","app/components/uigrid","app/collections/accounts"], function($, UIGrid, Accounts) {
+			require(["jquery","app/components/uigrid","app/models/account"], function($, UIGrid, Account) {
+
+				// var xhr = new XMLHttpRequest();
+				//
+				// xhr.addEventListener("readystatechange", function() {
+				// 	console.dir(arguments);
+				// });
+				//
+				// xhr.open("GET", "/api/accounts");
+				// xhr.send();
+
+				// var accounts = new Accounts();
+				// accounts.fetch({
+				// 	success: function() {
+				// 		console.dir(arguments);
+				// 	}
+				// });
+
+				// var account = new Account({
+				// 	acctNum: "1",
+				// 	name: "test",
+				// 	balance: 100,
+				// 	opened: new Date(),
+				// 	owner: "Bob"
+				// });
+				//
+				// account.save(null, {
+				// 	success: function() {
+				// 		console.dir(arguments);
+				// 	},
+				// 	error: function() {
+				// 		console.dir(arguments);
+				// 	}
+				// });
+
+
+
+				function getData() {
+					return [
+						{ acctNum: "1", name: "Checking", balance: 1000, opened: new Date(), owner: "Bob Smith" },
+						{ acctNum: "2", name: "Savings", balance: 100, opened: new Date(), owner: "Bob Smith" },
+						{ acctNum: "3", name: "Mortgage", balance: 100, opened: new Date(), owner: "Bob Smith" },
+						{ acctNum: "4", name: "Credit Card", balance: 100, opened: new Date(), owner: "Bob Smith" },
+						{ acctNum: "5", name: "Home Insurance", balance: 100, opened: new Date(), owner: "Bob Smith" },
+					]
+				}
+
+				var uiGrid = new UIGrid({
+					columns: [
+						{ caption: "Number", field: "acctNum", format: function(value) { return String(value).toUpperCase() } },
+						{ caption: "Name", field: "name" },
+						{ caption: "Balance", field: "balance", format: "currency" },
+						{ caption: "Opened", field: "opened", format: "date" },
+						{ caption: "Owner", field: "owner", align:"center" }
+					]
+				});
+
+				uiGrid.on("edit_row", function() {
+					console.dir(arguments);
+				});
+
+				uiGrid.show(getData(), $("body"));
+			});
+
+		</script>
+
+	</body>
+</html>

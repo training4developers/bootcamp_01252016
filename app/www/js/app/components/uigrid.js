@@ -90,6 +90,8 @@ define(["jquery","underscore","backbone"],
 					};
 
 					row.tr.append(td.append(input));
+
+					this.trigger("edit_row", { row: row });
 				});
 
 				return this._createActionColumn(row.tr, [
@@ -144,18 +146,11 @@ define(["jquery","underscore","backbone"],
 
 				tableElement.on("click", "[data-action-edit]", (e) => {
 
-					console.dir(tableElement);
-
 					if (this._currentEditRow) {
 						this._bodyViewRow(this._currentEditRow);
 					}
 
 					this._currentEditRow = $(e.target).closest("tr")[0];
-
-					this._bodyEditRow(this._currentEditRow);
-
-					this.trigger("edit_row", { row: this._currentEditRow });
-
 				});
 
 				var that = this;
@@ -168,8 +163,6 @@ define(["jquery","underscore","backbone"],
 					that._currentEditRow = null;
 
 					that.trigger("cancel_row", { row: row });
-
-
 				});
 
 				tableElement.on("click", "[data-action-save]", (e) => {

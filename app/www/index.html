@@ -3,58 +3,10 @@
 <html>
 
 	<head>
-		<title>DOM Demonstrations</title>
+		<title>UI Grid Application</title>
+		<link href="css/site.css" rel="stylesheet">
 		<script src="js/config.js"></script>
 		<script src="libs/dojo/dojo.js"></script>
-		<style>
-
-			table, tr, th, td, tbody, thead {
-				margin:0;
-				padding:0;
-			}
-
-			table {
-				border-spacing: 0;
-				border-collapse: collapse;
-				width:100%;
-			}
-
-			th {
-				text-align:center;
-			}
-
-			td.right {
-				text-align:right;
-			}
-
-			td.center {
-				text-align:center;
-			}
-
-			td, th {
-				padding:3px;
-				font-family:arial;
-				font-size: 1rem;
-			}
-
-			thead > tr:first-child > th {
-				border-top: 2px solid black;
-			}
-
-			thead > tr:last-child > th {
-				border-bottom: 1px solid black;
-			}
-
-			tbody> tr:last-child > td {
-				border-bottom: 2px solid black;
-			}
-
-			tbody> tr:nth-child(2n) {
-				background-color: yellow;
-			}
-
-		</style>
-
 	</head>
 
 	<body>
@@ -63,7 +15,164 @@
 
 			"use strict";
 
-			require(["jquery","app/components/uigrid"], function($, UIGrid) {
+			require(["jquery","app/components/uigrid", "app/collections/accounts"],
+				function($, UIGrid, Accounts) {
+
+				var accounts = new Accounts();
+				accounts.fetch({
+					success: function() {
+						console.dir(accounts);
+					}
+				});
+
+				// function giveMeAPromise(label, timeout, shouldIFail) {
+				// 	return new Promise(function(resolve, reject) {
+				// 		setTimeout(function() {
+				//
+				// 			if (shouldIFail) {
+				// 				console.log(label + " rejected");
+				// 				reject(label);
+				// 			} else {
+				// 				console.log(label + " resolved");
+				// 				resolve(label);
+				// 			}
+				//
+				// 		}, timeout);
+				// 	})
+				// }
+				//
+				//
+				// var p1 = giveMeAPromise("a", 2000, false);
+				// var p2 = giveMeAPromise("b", 6000, false);
+				// var p3 = giveMeAPromise("c", 4000, true);
+				// var p4 = giveMeAPromise("d", 8000, false);
+				//
+				// var p5 = Promise.all([p1,p2]);
+				//
+				// p5.then(function() {
+				// 	console.log("a and b are done");
+				// })
+				//
+				// Promise.all([p5, p3, p4]).then(function() {
+				// 	console.log("all done!");
+				// 	console.log(arguments);
+				// }).catch(function() {
+				// 	console.log("one failed...");
+				// 	console.log(arguments);
+				// });
+				//
+				//  var p6 = p2.then(function() {
+				// 	return p4;
+				// }).then(function() {
+				// 	return p5;
+				// });
+				//
+				// p2.then(function() {
+				//  return p4;
+				// 	});
+				//
+				// Promise.all([p6,p3]).then(function() {
+				//
+				// });
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				// var p = new Promise(function(resolve) {
+				//
+				// 	setTimeout(function() {
+				// 		resolve();
+				// 	}, 1000);
+				//
+				// });
+				//
+				// p.then(function() {
+				// 	console.log("first promise done");
+				//
+				// 	// return new Promise(function(resolve) {
+				// 	// 	setTimeout(function() {
+				// 	// 		resolve();
+				// 	// 	}, 1000);
+				// 	// });
+				//
+				// 	throw Error("something happened!");
+				//
+				// }).then(function() {
+				// 	console.log("second promise done");
+				// }, function() {
+				// 	console.log("error occurred..");
+				// }).then(function() {
+				// 	console.log("third promise done");
+				// }).catch(function() {
+				// 	console.log("some error occurred");
+				// });
+				//
+				// console.log("promises are amazing!");
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				//
+				// function ajax(options) {
+				//
+				// 	return new Promise(function(resolve, reject) {
+				//
+				// 		var xhr = new XMLHttpRequest();
+				//
+				// 		xhr.addEventListener("readystatechange", function() {
+				// 			if (xhr.status !== 200 && xhr.readyState > 1) {
+				// 				reject(xhr);
+				// 			}
+				// 			if (xhr.readyState === 4) {
+				// 				resolve(JSON.parse(xhr.responseText), xhr);
+				// 			}
+				// 		});
+				//
+				// 		xhr.open(options.method, options.url);
+				// 		xhr.send();
+				//
+				// 	});
+				// }
+				//
+				// ajax({
+				// 	method: "GET",
+				// 	url: "/api/accounts"
+				// }).then(function(data, xhr) {
+				// 	console.log("success");
+				// 	console.dir(data);
+				// 	console.dir(xhr);
+				// }).catch(function(xhr) {
+				// 	console.log("error");
+				// 	console.dir(xhr);
+				// });
+
+
 
 				function getData() {
 					return [

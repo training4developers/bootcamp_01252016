@@ -6,7 +6,7 @@ const
 	accountSchema = mongoose.Schema({
 		acctNum: String,
 		name: String,
-		balance: String,
+		balance: Number,
 		opened: Date,
 		owner: String
 	}),
