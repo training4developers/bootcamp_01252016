@@ -1,0 +1,12 @@
+{
+  "webServer": {
+    "rootFolder": "dist/www",
+    "port": 8080,
+    "uploadFolder": "dist/uploads/"
+  },
+  "mongoServer": {
+    "host": "localhost",
+    "port": 27017,
+    "dbName": "Intuit"
+  }
+}

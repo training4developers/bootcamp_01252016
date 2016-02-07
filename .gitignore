@@ -32,4 +32,10 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-app/www/libs
+# SASS Cache
+.sass-cache
+
+# Dist Folder and Bower Package Locations
+archive/app/www/libs
+dist
+src/www/libs

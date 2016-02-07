@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>React Component Application</title>
+		<link href="css/site.min.css" rel="stylesheet">
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+		<h1>Welcome!</h1>
+		<main>
+		</main>
+
+		<script>
+
+			"use strict";
+
+			require(["dojo/query", "react", "reactdom", "app/components/helloworld"],
+				function(query, React, ReactDOM, HelloWorld) {
+
+					ReactDOM.render(React.createElement(HelloWorld), query("main")[0])
+
+				});
+
+		</script>
+
+	</body>
+</html>
