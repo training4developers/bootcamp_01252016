@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 		mongoServer: {
 			host: "localhost",
 			port: 27017,
-			dbName: "Intuit"
+			dbName: "t4dclass"
 		},
 		sass: {
 			site: {
