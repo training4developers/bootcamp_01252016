@@ -4,31 +4,10 @@ const dojoConfig = {
 	packages: [
 		{ name: "app", location: "../../js" },
 		{ name: "jquery", location: "../jquery/dist", main: "jquery" },
-		{ name: "lodash", location: "../lodash", main: "lodash" },
+		{ name: "underscore", location: "../lodash", main: "lodash" },
 		{ name: "backbone", location: "../backbone", main: "backbone" },
 		{ name: "react", location: "../react", main: "react" },
-		{ name: "reactdom", location: "../react", main: "react-dom" }
-	],
-
-	shim : {
-		backbone : {
-			deps : [
-				"jquery",
-				"lodash"
-			],
-			exports : "Backbone"
-		},
-		jquery : {
-			exports : "$"
-		},
-		lodash : {
-			exports : "_"
-		},
-		react: {
-			exports: "React"
-		},
-		reactdom: {
-			export: "ReactDOM"
-		}
-	}
+		{ name: "reactdom", location: "../react", main: "react-dom" },
+		{ name: "flux", location: "../flux/dist", main: "Flux" }
+	]
 };

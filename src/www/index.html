@@ -10,7 +10,7 @@
 	</head>
 
 	<body>
-		<h1>Welcome!</h1>
+
 		<main>
 		</main>
 
@@ -18,10 +18,12 @@
 
 			"use strict";
 
-			require(["dojo/query", "react", "reactdom", "app/components/helloworld"],
-				function(query, React, ReactDOM, HelloWorld) {
+			require(["dojo/query", "react", "reactdom", "app/components/movietable", "app/actions/movieActions"],
+				function(query, React, ReactDOM, MovieTable, movieActions) {
 
-					ReactDOM.render(React.createElement(HelloWorld), query("main")[0])
+					ReactDOM.render(React.createElement(MovieTable), query("main")[0]);
+
+					movieActions.refresh();
 
 				});
 

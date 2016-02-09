@@ -31,6 +31,7 @@ module.exports = function(config) {
 	app.use("/api", bodyParser.json());
 
 	app.use("/api", require("./routers/default")("account"));
+	app.use("/api", require("./routers/default")("movie"));
 
 	app.use(express.static(config.webServer.rootFolder));
 
@@ -41,7 +42,7 @@ module.exports = function(config) {
 		stop: function(cb) {
 			server.close(cb);
 		}
-	}
+	};
 
 
 

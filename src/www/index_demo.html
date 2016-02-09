@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>React Component Application</title>
+		<link href="css/site.min.css" rel="stylesheet">
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+		<h1>Welcome!</h1>
+		<main>
+		</main>
+
+		<script>
+
+			"use strict";
+
+			require(["dojo/query", "react", "reactdom", "app/components/accounts", "app/actions/accounts"],
+				function(query, React, ReactDOM, Accounts, accountsActions) {
+
+					ReactDOM.render(React.createElement(Accounts), query("main")[0]);
+
+					setTimeout(function() {
+						console.log("timeout expired");
+						accountsActions.refresh();
+					},2000);
+
+				});
+
+		</script>
+
+	</body>
+</html>

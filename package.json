@@ -5,7 +5,9 @@
   "main": "Gruntfile.js",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "events": "^1.1.0",
     "express": "^4.13.4",
+    "keymirror": "^0.1.1",
     "mongoose": "^4.4.1",
     "multer": "^1.1.0"
   },
