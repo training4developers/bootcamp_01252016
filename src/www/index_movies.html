@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>React Component Application</title>
+		<link href="css/site.min.css" rel="stylesheet">
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+
+		<main>
+		</main>
+
+		<script>
+
+			"use strict";
+
+			require(["dojo/query", "react", "reactdom", "app/components/movietable", "app/actions/movieActions"],
+				function(query, React, ReactDOM, MovieTable, movieActions) {
+
+					ReactDOM.render(React.createElement(MovieTable), query("main")[0]);
+
+					movieActions.refresh();
+
+				});
+
+		</script>
+
+	</body>
+</html>

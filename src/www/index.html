@@ -18,12 +18,35 @@
 
 			"use strict";
 
-			require(["dojo/query", "react", "reactdom", "app/components/movietable", "app/actions/movieActions"],
-				function(query, React, ReactDOM, MovieTable, movieActions) {
+			require(["dojo/query", "react", "reactdom", "app/components/app"],
+				function(query, React, ReactDOM, App) {
 
-					ReactDOM.render(React.createElement(MovieTable), query("main")[0]);
+					// <h1 id="main-header">Intuit Rocks!</h1>
+					// ReactDOM.render(
+					// 	React.createElement("h1", { id: "main-header" }, "Intuit Rocks!"),
+					// 	query("main")[0]
+					// );
 
-					movieActions.refresh();
+					// ReactDOM.render(
+					// 	React.createElement("p", { id: "bio", className: "blue-text" }, "Lorem ipsum..."),
+					// 	query("main")[0]
+					// );
+
+					// var article = React.createElement("article", null, [
+					// 	React.createElement("header", null, "Header"),
+					// 	React.createElement("section", null, "Section"),
+					// 	React.createElement("footer", null, "Footer")
+					// ]);
+					//
+					// ReactDOM.render(article, query("main")[0]);
+
+
+					ReactDOM.render(React.createElement(App, {
+						menuItems: [
+							{ label: "Home", url: "#" },
+							{ label: "About", url: "#" },
+							{ label: "Contact", url: "#" }
+						]}), query("main")[0]);
 
 				});
 
