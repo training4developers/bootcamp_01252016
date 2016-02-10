@@ -1,75 +1,46 @@
-define(["react", "immutable", "app/components/menu", "app/components/formMenuItem"],
-	function(React, Immutable, Menu, FormMenuItem) {
+define(["react", "app/components/header", "app/components/footer", "app/components/loading"],
+	function(React, Header, Footer, Loading) {
 
-		return class App extends React.Component {
+		return React.createClass({
 
-			constructor(props) {
-				super(props);
+			getInitialState: function() {
+				return { page: React.createElement(Loading) };
+			},
 
-				this.state = {
-					menuItems: new Immutable.List(this.props.menuItems)
-				};
+			getPage: function(route) {
+				return new Promise(function(resolve, reject) {
+					require(["app/components/" + this.route], function(Page) {
+						resolve(Page);
+					});
+				}.bind({ route: route }));
+			},
 
-				this._addMenuItem = this._addMenuItem.bind(this);
-				this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this);
-			}
+			updatePage: function(route) {
+				this.getPage(route).then(function(Page) {
+					this.setState({ page: React.createElement(Page) });
+				}.bind(this));
+			},
 
-			_addMenuItem(newMenuItem) {
-				this.setState({
-					menuItems: this.state.menuItems.push(newMenuItem)
-				});
-			}
+			componentWillMount: function() {
+				this.updatePage(this.props.route);
+			},
 
-			shouldComponentUpdate(nextProps, nextState) {
-				return nextState.menuItems !== this.state.menuItems;
-			}
+			componentWillReceiveProps: function(nextProps) {
+				if (nextProps.route !== this.props.route) {
+					updatePage(nextProps.route);
+				}
+			},
 
-			render() {
-
-				console.dir(this);
-
-				return(
-					<main>
-						<Menu menuItems={this.state.menuItems} />
-						<FormMenuItem addMenuItem={this._addMenuItem} />
-					</main>
+			render: function() {
+				return (
+					<div>
+						<Header />
+						{this.state.page}
+						<Footer />
+					</div>
 				);
-
 			}
 
-		}
-
-		// return React.createClass({
-		//
-		// 	getInitialState: function() {
-		// 		return {
-		// 			menuItems: new Immutable.List(this.props.menuItems)
-		// 		};
-		// 	},
-		//
-		// 	_addMenuItem: function(newMenuItem) {
-		// 		this.setState({
-		// 			menuItems: this.state.menuItems.push(newMenuItem)
-		// 		});
-		// 	},
-		//
-		// 	shouldComponentUpdate: function(nextProps, nextState) {
-		// 		return nextState.menuItems !== this.state.menuItems;
-		// 	},
-		//
-		// 	render: function() {
-		//
-		// 		console.dir(this);
-		//
-		// 		return(
-		// 			<main>
-		// 				<Menu menuItems={this.state.menuItems} />
-		// 				<FormMenuItem addMenuItem={this._addMenuItem} />
-		// 			</main>
-		// 		);
-		//
-		// 	}
-		//
-		// })
+		})
 
 	});

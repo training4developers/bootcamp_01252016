@@ -18,35 +18,26 @@
 
 			"use strict";
 
-			require(["dojo/query", "react", "reactdom", "app/components/app"],
-				function(query, React, ReactDOM, App) {
+			require(["dojo/query", "react", "reactdom", "app/router", "app/components/app"],
+				function(query, React, ReactDOM, appRouter, App) {
 
-					// <h1 id="main-header">Intuit Rocks!</h1>
-					// ReactDOM.render(
-					// 	React.createElement("h1", { id: "main-header" }, "Intuit Rocks!"),
-					// 	query("main")[0]
-					// );
+					function domRender(reactElement) {
+						ReactDOM.render(reactElement, query("main")[0]);
+					}
 
-					// ReactDOM.render(
-					// 	React.createElement("p", { id: "bio", className: "blue-text" }, "Lorem ipsum..."),
-					// 	query("main")[0]
-					// );
+					appRouter.route("", "home", function() {
+						domRender(React.createElement(App, {
+							route: "home"
+						}));
+					});
 
-					// var article = React.createElement("article", null, [
-					// 	React.createElement("header", null, "Header"),
-					// 	React.createElement("section", null, "Section"),
-					// 	React.createElement("footer", null, "Footer")
-					// ]);
-					//
-					// ReactDOM.render(article, query("main")[0]);
+					appRouter.route("about", "about", function() {
+						domRender(React.createElement(App, {
+							route: "about"
+						}));
+					});
 
-
-					ReactDOM.render(React.createElement(App, {
-						menuItems: [
-							{ label: "Home", url: "#" },
-							{ label: "About", url: "#" },
-							{ label: "Contact", url: "#" }
-						]}), query("main")[0]);
+					appRouter.start();
 
 				});
 
