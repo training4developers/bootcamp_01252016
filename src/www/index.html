@@ -11,6 +11,8 @@
 
 	<body>
 
+		<main></main>
+
 
 		<script>
 
@@ -19,8 +21,149 @@
 			require(["jquery","underscore","backbone"],
 				function($, _, Backbone) {
 
+						var HomeView = Backbone.View.extend({
+							goToAbout: function() {
+								this.trigger("state_change", { state: "about" });
+							},
+							events: {
+								"click button": "goToAbout"
+							},
+							render: function() {
+								return this.$el.append("<div>Home <button>Go to About</button><br><a href='#/about'>About</a></div>");
+							}
+						});
 
-					
+						var AboutView = Backbone.View.extend({
+							goToHome: function() {
+								this.trigger("state_change", { state: "home" });
+							},
+							events: {
+								"click button": "goToHome"
+							},
+							render: function() {
+								return this.$el.append("<div>About <button>Go to Home</button></div>");
+							}
+						});
+
+						var AboutView2 = AboutView.extend({
+							render: function() {
+								return this.$el.append("<div>About 2 <button>Go to Home</button></div>");
+							}
+						});
+
+						function AppController(router, rootElement, di) {
+
+							_.extend(this, Backbone.Events);
+
+							var userEvents = [];
+
+							this.currentView = null;
+							this.defaultState = "home";
+
+							this.changeState = function(newState) {
+								this.trigger(newState);
+							};
+
+							this.changeView = function(viewName, viewOptions) {
+
+								var ViewClass = di.get(viewName);
+
+								if (this.currentView) {
+									this.currentView.remove();
+								}
+
+								this.currentView = new ViewClass(viewOptions);
+								rootElement.append(this.currentView.render());
+
+								this.listenTo(this.currentView, "state_change", function(data) {
+									this.changeState(data.state);
+								}.bind(this));
+							}
+
+							this.listenTo(router, "state_change", function(data) {
+								this.changeState(data.state);
+							});
+
+							this.on("all", function(eventName) {
+								userEvents.push(eventName);
+							});
+
+							this.on("home", function() {
+
+								this.changeView("home", {});
+								router.navigate("");
+							});
+
+							this.on("about", function() {
+								this.changeView("about", {});
+								router.navigate("about");
+							});
+
+							this.start = function() {
+								//this.changeState(this.defaultState);
+
+								Backbone.history.start();
+							}
+
+						}
+
+						//_.extend(AppController.prototype, Backbone.Events);
+
+						var AppRouter = Backbone.Router.extend({
+
+							getStateEventObj: function(stateName) {
+								return { state: stateName };
+							},
+
+							home: function() {
+								this.trigger("state_change", this.getStateEventObj("home"));
+							},
+
+							about: function() {
+								this.trigger("state_change", this.getStateEventObj("about"));
+							},
+
+							routes: {
+								"": "home",
+								"about": "about"
+							}
+						});
+
+						function DIContainer() {
+
+							return {
+								get: function(name) {
+									switch(name) {
+										case "home":
+											return HomeView;
+										case "about":
+											return AboutView;
+									}
+								}
+							}
+
+						}
+
+						function DIContainer2() {
+
+							return {
+								get: function(name) {
+									switch(name) {
+										case "home":
+											return HomeView;
+										case "about":
+											return AboutView2;
+									}
+								}
+							}
+
+						}
+
+						var appController = new AppController(new AppRouter(), $("main"), new DIContainer());
+						appController.start();
+
+
+
 
 
 				});
