@@ -1,4 +1,4 @@
-define(["react", "app/stores/movieStore"], function(React, movieStore) {
+define(["react", "app/stores/movieStore", "app/actions/movieActions"], function(React, movieStore, movieActions) {
 
 	"use strict";
 
@@ -33,6 +33,7 @@ define(["react", "app/stores/movieStore"], function(React, movieStore) {
 			};
 
 			this._onChange = this._onChange.bind(this);
+			this._onClick = this._onClick.bind(this);
 		}
 
 		componentDidMount() {
@@ -41,6 +42,10 @@ define(["react", "app/stores/movieStore"], function(React, movieStore) {
 
 		componentWillUnmount() {
 			movieStore.removeChangeListener(this._onChange);
+		}
+
+		_onClick() {
+			movieActions.refresh();
 		}
 
 		render() {
@@ -52,19 +57,22 @@ define(["react", "app/stores/movieStore"], function(React, movieStore) {
 			});
 
 			return (
-				<table>
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Released</th>
-							<th>Rating</th>
-							<th>Genre</th>
-						</tr>
-					</thead>
-					<tbody>
-						{movieRows}
-					</tbody>
-				</table>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Released</th>
+								<th>Rating</th>
+								<th>Genre</th>
+							</tr>
+						</thead>
+						<tbody>
+							{movieRows}
+						</tbody>
+					</table>
+					<button type="button" onClick={this._onClick}>Refresh</button>
+				</div>
 			);
 
 		}

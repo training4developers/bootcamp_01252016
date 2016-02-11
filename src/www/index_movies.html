@@ -11,8 +11,7 @@
 
 	<body>
 
-		<main>
-		</main>
+		<main></main>
 
 		<script>
 
@@ -21,7 +20,10 @@
 			require(["dojo/query", "react", "reactdom", "app/components/movietable", "app/actions/movieActions"],
 				function(query, React, ReactDOM, MovieTable, movieActions) {
 
-					ReactDOM.render(React.createElement(MovieTable), query("main")[0]);
+					ReactDOM.render(React.createElement("div", null, [
+						React.createElement(MovieTable, { key: "1" }),
+						React.createElement(MovieTable, { key: "2" })
+					]), query("main")[0]);
 
 					movieActions.refresh();
 

@@ -27,7 +27,7 @@ define(["react", "app/components/header", "app/components/footer", "app/componen
 
 			componentWillReceiveProps: function(nextProps) {
 				if (nextProps.route !== this.props.route) {
-					updatePage(nextProps.route);
+					this.updatePage(nextProps.route);
 				}
 			},
 
