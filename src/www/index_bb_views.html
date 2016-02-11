@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>React Component Application</title>
+		<link href="css/site.min.css" rel="stylesheet">
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+		<script type="text/intuit-template" id="layout-template">
+			<header id="page-header">
+			</header>
+			<main id="page-content">
+			</main>
+			<footer id="page-footer">
+			</footer>
+		</script>
+		<script type="text/intuit-template" id="movie-table">
+			<table><thead><tr><th>Name</th><th>Year</th></tr></thead><tbody><%= rows %></tbody></table>
+		</script>
+		<script type="text/intuit-template" id="movie-row">
+			<td><%= name %></td><td><%= year %></td>
+		</script>
+	</head>
+
+	<body>
+
+
+		<script>
+
+			"use strict";
+
+			require(["jquery","underscore","backbone"],
+				function($, _, Backbone) {
+
+					var LayoutView = Backbone.View.extend({
+
+						regions: [],
+						regionViews: [],
+
+						addRegion: function(regionName, regionSelector) {
+							this.regions.push({
+								name: regionName,
+								selector: regionSelector,
+
+							});
+						},
+
+						addView: function(regionName, viewObj) {
+							if (!this.regionViews[regionName]) {
+								this.regionViews[regionName] = [];
+							}
+
+							this.regionViews[regionName].push(viewObj);
+						},
+
+						template: function() {
+							console.log($("#layout-template").html());
+							return $("#layout-template").html();
+						},
+
+						render: function() {
+							console.dir(this.$el);
+							this.$el.append(this.template());
+							this.regions.forEach(function(region) {
+								region.element = $(region.selector);
+								this.regionViews[region.name].forEach(function(regionView) {
+									region.element.append(regionView.render());
+								});
+							}.bind(this));
+						}
+
+
+					});
+
+
+					var HeaderView = Backbone.View.extend({
+						tagName: "header",
+						render: function() {
+							this.$el.html("<h1>Movie List</h1>");
+							return this.$el;
+						}
+					});
+
+					var FooterView = Backbone.View.extend({
+						tagName: "footer",
+						render: function() {
+							this.$el.html("<span>Copyright 2016. All Rights Reserved.</span>");
+							return this.$el;
+						}
+					});
+
+					var ContentView = Backbone.View.extend({
+						tagName: "main",
+
+						saveButton: function(e) {
+							console.log("clicked it!");
+						},
+
+						events: {
+							"click button[action-button-save]": "saveButton"
+						},
+
+						template: function() {
+							return "<button action-button-save>Save</button>";
+						},
+						render: function() {
+
+							this.$el.html(this.template());
+							return this.$el;
+						}
+					});
+
+					var TableRowView = Backbone.View.extend({
+
+						tagName: "tr",
+
+						template: function() {
+							return _.template($("#movie-row").html());
+						},
+
+						render: function() {
+							this.$el.html(this.template()(this.model.attributes));
+							return this.el.outerHTML;
+						}
+
+					});
+
+					var TableView = Backbone.View.extend({
+
+						initialize: function(options) {
+
+							console.dir(this);
+							console.dir(options);
+							this.options = options;
+
+						},
+
+						template: function() {
+							return _.template($("#movie-table").html());
+						},
+
+						render: function() {
+
+							var movieRows = this.collection.map(function(movie) {
+								return new TableRowView({
+									model: movie
+								}).render();
+							});
+
+							this.$el.html(this.template()({
+								rows: movieRows.join()
+							}));
+
+							return this.$el;
+
+						}
+
+					});
+
+
+
+					// var AppView = Backbone.View.extend({
+					//
+					// 	render: function() {
+					//
+					// 		var contentView = new ContentView();
+					//
+					// 		this.$el.append(new HeaderView().render());
+					// 		this.$el.append(contentView.render());
+					// 		this.$el.append(new FooterView().render());
+					//
+					// 		return this;
+					//
+					// 	}
+					//
+					// });
+					//
+					// var appView = new AppView({
+					// 	el: $("body")
+					// });
+					// appView.render();
+
+					var movies = new Backbone.Collection();
+					movies.add(new Backbone.Model({ name: "Back to the Future", year: 1984 }));
+					movies.add(new Backbone.Model({ name: "Carebears", year: 1990 }));
+					movies.add(new Backbone.Model({ name: "Hunger Games", year: 2003 }));
+					movies.add(new Backbone.Model({ name: "The Revenant", year: 2016 }));
+
+					var layoutView = new LayoutView({
+						el: $("body")
+					});
+					layoutView.addRegion("header", "#page-header");
+					layoutView.addRegion("content", "#page-content");
+					layoutView.addRegion("footer", "#page-footer");
+
+					layoutView.addView("header", new HeaderView());
+					layoutView.addView("content", new ContentView());
+					layoutView.addView("content", new TableView({
+						collection: movies,
+						caption: "Movies"
+					}));
+					layoutView.addView("footer", new FooterView());
+					layoutView.render();
+
+					//console.dir(appView);
+
+
+					// var ListView = Backbone.View.extend({
+					//
+					// 	id: "main-header",
+					// 	tagName: "h1",
+					// 	className: "intuit-rocks",
+					//
+					// 	render: function() {
+					// 		console.dir(this.$el);
+					// 		this.$el.text("Movie List");
+					// 		return this.$el;
+					// 	}
+					//
+					// });
+					//
+					// var listView = new ListView();
+					// $("main").append(listView.render());
+
+
+
+
+
+				});
+
+		</script>
+
+	</body>
+</html>

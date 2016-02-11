@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>React Component Application</title>
+		<link href="css/site.min.css" rel="stylesheet">
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+	</head>
+
+	<body>
+
+		<main>
+		</main>
+
+		<script>
+
+			"use strict";
+
+			require(["dojo/query", "react", "reactdom", "app/router", "app/components/app"],
+				function(query, React, ReactDOM, appRouter, App) {
+
+					function domRender(reactElement) {
+						ReactDOM.render(reactElement, query("main")[0]);
+					}
+
+					appRouter.route("", "home", function() {
+						domRender(React.createElement(App, {
+							route: "home"
+						}));
+					});
+
+					appRouter.route("about", "about", function() {
+						domRender(React.createElement(App, {
+							route: "about"
+						}));
+					});
+
+					appRouter.start();
+
+					var ws = new WebSocket("ws://localhost:8080");
+					ws.addEventListener("open", function() {
+						console.log("connected");
+
+						ws.send("test");
+					});
+
+
+
+				});
+
+		</script>
+
+	</body>
+</html>
