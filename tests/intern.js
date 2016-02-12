@@ -48,7 +48,9 @@ define({
 			{ name: "backbone", location: "/libs/backbone", main: "backbone" },
 			{ name: "stickit", location: "/libs/backbone.stickit", main: "backbone.stickit" },
 			{ name: "marionette", location: "/libs/backbone.marionette/lib", main: "backbone.marionette" },
-			{ name: "backbone-faux-server", location: "/libs/backbone-faux-server", main: "backbone-faux-server" }
+			{ name: "backbone-faux-server", location: "/libs/backbone-faux-server", main: "backbone-faux-server" },
+			{ name: "react", location: "/libs/react", main: "react-with-addons" },
+			{ name: "reactdom", location: "/libs/react", main: "react-dom" }
 		]
 	},
 
@@ -59,7 +61,7 @@ define({
 		"tests/unit/collections/accounts",
 		"tests/unit/views/viewAccount",
 		"tests/unit/routers/accountRouter",
-		//"tests/unit/components/accountTable"
+		"tests/unit/components/reactDemos"
 	],
 
 	// Functional test suite(s) to execute against each browser once non-functional tests are completed

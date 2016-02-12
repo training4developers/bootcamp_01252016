@@ -10,7 +10,6 @@
     "keymirror": "^0.1.1",
     "mongoose": "^4.4.1",
     "multer": "^1.1.0",
-    "sinon": "^1.17.3",
     "ws": "^1.0.1"
   },
   "devDependencies": {
@@ -28,7 +27,8 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-nodemon": "^0.4.1",
     "intern": "^3.0.6",
-    "open": "0.0.5"
+    "open": "0.0.5",
+    "sinon": "^1.17.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
