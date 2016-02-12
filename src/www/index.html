@@ -18,18 +18,48 @@
 
 			"use strict";
 
-			require(["jquery","underscore","backbone"],
-				function($, _, Backbone) {
+			require(["jquery","underscore","backbone","reactdom", "react", "app/components/homeButton"],
+				function($, _, Backbone, ReactDOM, React, HomeButton) {
+
+						var events = {
+
+							events: {},
+
+
+							on: function(eventName, eventHandler) {
+								if (!events[eventName]) {
+									events[eventName] = [];
+								}
+								events[eventName].push(eventHandler);
+							}
+							trigger: function(eventName, eventArgs) {
+
+								if (events[eventName]) {
+									events[eventName].forEach(function(eventHandler) {
+										eventHandler(eventArgs);
+									});
+								}
+
+							}
+						}
+
 
 						var HomeView = Backbone.View.extend({
 							goToAbout: function() {
 								this.trigger("state_change", { state: "about" });
 							},
-							events: {
-								"click button": "goToAbout"
-							},
 							render: function() {
-								return this.$el.append("<div>Home <button>Go to About</button><br><a href='#/about'>About</a></div>");
+
+								this.homeButton = ReactDOM.render(React.createElement(HomeButton), this.$el[0], function() {
+									console.dir(arguments);
+								});
+
+								this.listenTo(this.homeButton, "goto_about", function() {
+									console.log("made it here...");
+									this.goToAbout();
+								}.bind(this));
+
+								return this.$el;
 							}
 						});
 
@@ -78,6 +108,8 @@
 								this.listenTo(this.currentView, "state_change", function(data) {
 									this.changeState(data.state);
 								}.bind(this));
+
+								return this.currentView;
 							}
 
 							this.listenTo(router, "state_change", function(data) {
@@ -91,6 +123,8 @@
 							this.on("home", function() {
 
 								this.changeView("home", {});
+
+								this.listenTo(homeView.homeButton, "")
 								router.navigate("");
 							});
 
