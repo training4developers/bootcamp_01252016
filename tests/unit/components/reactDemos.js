@@ -52,7 +52,7 @@ define([
     },
 
 		// unit test
-		inputDemoText: function() {
+		inputDemoTest: function() {
 
 			var
 				message = "Original Value!",
