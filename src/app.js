@@ -80,6 +80,9 @@ module.exports = function(config) {
 	app.use("/api", require("./routers/default")("account"));
 	app.use("/api", require("./routers/default")("movie"));
 
+	app.use("/node_modules", express.static("node_modules"));
+	app.use("/tests", express.static("tests"));
+
 	app.use(express.static(config.webServer.rootFolder));
 
 	return {

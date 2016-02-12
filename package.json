@@ -10,6 +10,7 @@
     "keymirror": "^0.1.1",
     "mongoose": "^4.4.1",
     "multer": "^1.1.0",
+    "sinon": "^1.17.3",
     "ws": "^1.0.1"
   },
   "devDependencies": {
@@ -21,9 +22,12 @@
     "grunt-concurrent": "^2.1.0",
     "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-handlebars": "^0.11.0",
+    "grunt-contrib-htmlmin": "^0.6.0",
     "grunt-contrib-sass": "^0.9.2",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-nodemon": "^0.4.1",
+    "intern": "^3.0.6",
     "open": "0.0.5"
   },
   "scripts": {

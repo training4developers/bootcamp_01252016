@@ -2,6 +2,8 @@ module.exports = function(grunt) {
 
 	"use strict";
 
+	const path = require("path");
+
 	grunt.initConfig({
 		webServer: {
 			rootFolder: "dist/www",
@@ -23,10 +25,42 @@ module.exports = function(grunt) {
 				files: { "dist/www/css/site.min.css": "dist/www/css/site.css" }
 			}
 		},
+		handlebars: {
+			compile: {
+				options: {
+					namespace: "handlebars",
+					amd: true,
+					processName: function(filePath) {
+						return path.basename(filePath, ".min.hbs");
+					},
+					processPartialName: function(filePath) {
+						return path.basename(filePath, ".min.hbs");
+					}
+				},
+				files: {
+					"src/www/js/templates-hbs.js": ["src/www/templates-min/**/*.min.hbs"]
+				}
+			}
+		},
+		htmlmin: {
+			handlebars: {
+	      options: {
+	        removeComments: true,
+	        collapseWhitespace: true
+	      },
+        expand: true,
+        cwd: 'src/www/templates',
+        src: '*.hbs',
+        dest: 'src/www/templates-min/',
+        ext: ".min.hbs"
+	    }
+		},
 		copy: {
 			main: {
 				files: [
-					{ expand: true, cwd: "./src", src: ["**","!www/js/**/*"], dest: "./dist" },
+					{ expand: true, cwd: "./src", src: [
+						"**","!www/js/**/*","!www/templates/**/*","!www/templates-min/**/*","www/js/templates-hbs.js"
+					], dest: "./dist" },
 				]
 			}
 		},
@@ -39,7 +73,7 @@ module.exports = function(grunt) {
 			  files: [{
 			    expand: true,
 			    cwd: "src/www/js",
-			    src: ["**/*.js","**/*.jsx"],
+			    src: ["**/*.js","**/*.jsx","!templates-hbs.js"],
 			    dest: "dist/www/js",
 			    ext: ".js"
 			  }]
@@ -68,6 +102,13 @@ module.exports = function(grunt) {
 
 		},
 		watch: {
+			handlebars: {
+				files: ["src/www/templates/**/*.hbs"],
+				tasks: ["htmlmin", "handlebars"],
+				options: {
+					spawn: false
+				}
+			},
 			sass: {
 				files: ["src/www/css/site.scss"],
 				tasks: ["sass", "cssmin"]
@@ -96,8 +137,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-nodemon");
 	grunt.loadNpmTasks("grunt-contrib-watch");
 	grunt.loadNpmTasks("grunt-concurrent");
+	grunt.loadNpmTasks("grunt-contrib-handlebars");
+  grunt.loadNpmTasks("grunt-contrib-htmlmin");
 
 
-	grunt.registerTask("default", ["sass", "cssmin", "copy", "babel", "concurrent"]);
+	grunt.registerTask("default", [
+		"htmlmin", "handlebars", "sass", "cssmin", "copy", "babel", "concurrent"
+	]);
 
 };
