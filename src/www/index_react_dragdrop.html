@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>React Component Application</title>
+		<link href="css/site.min.css" rel="stylesheet">
+		<script src="js/config.js"></script>
+		<script src="libs/dojo/dojo.js"></script>
+		<style>
+
+			.drag-box {
+				width:100px;
+				height:100px;
+				background-color: red;
+				margin:0;
+				padding:0;
+				float:left;
+			}
+
+			.drop-box {
+				width:200px;
+				height:200px;
+				background-color: blue;
+				margin:0;
+				padding:5px;
+				box-sizing: border-box;
+				float:right;
+			}
+
+			.drop-box.active {
+				border: yellow dashed 3px;
+				padding:2px;
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<main>
+		</main>
+
+		<script>
+
+			"use strict";
+
+			require(["jquery","underscore","backbone","reactdom", "react"],
+				function($, _, Backbone, ReactDOM, React) {
+
+					var DragNode = React.createClass({
+
+						getInitialState: function() {
+							return {
+								counter: this.props.counter || 0,
+								dragging: false
+							};
+						},
+
+						_onDragStart: function(e) {
+							window.dragging = {
+								componentClass: DragNode,
+								componentInstance: this,
+								componentDOMNode: ReactDOM.findDOMNode(this)
+							};
+							this.setState(_.extend(this.state, {dragging:true}));
+						},
+
+						render: function() {
+
+							var props = { draggable: "true", className: this.props.className, onDragStart:this._onDragStart };
+
+							if (this.state.dragging) {
+								props["data-dragging"] = "true";
+							}
+
+							return React.DOM.div(props, this.state.counter);
+						},
+
+						componentDidMount: function() {
+							setInterval(function() {
+								this.setState({
+									counter: this.state.counter + 1
+								});
+							}.bind(this), 500);
+						}
+					});
+
+					var DropNode = React.createClass({
+
+						getInitialState: function() {
+							return {
+								activateDropZone: false
+							};
+						},
+
+						_onDragOver: function(e) {
+							e.preventDefault();
+						},
+
+						_onDragEnter: function(e) {
+							e.preventDefault();
+							this.setState(_.extend(this.state, {activateDropZone:true}));
+						},
+
+						_onDragLeave: function(e) {
+							e.preventDefault();
+							this.setState(_.extend(this.state, {activateDropZone:false}));
+						},
+
+						_onDrop: function(e) {
+
+							e.preventDefault();
+
+							if (!this.state.children) {
+								this.state.children = [];
+							}
+
+							var instanceProps = {
+								key: this.state.children.length
+							};
+
+							_.extend(instanceProps, window.dragging.componentInstance.props, window.dragging.componentInstance.state);
+							this.state.children.push(React.createElement(window.dragging.componentClass, instanceProps));
+							window.dragging = null;
+
+							this.setState(_.extend(this.state, {activateDropZone:false, children:this.state.children}));
+						},
+
+						render: function() {
+
+							var props = {
+								className: this.props.className,
+								onDragOver:this._onDragOver,
+								onDragEnter:this._onDragEnter,
+								onDragLeave:this._onDragLeave,
+								onDrop:this._onDrop,
+							};
+
+							if (this.state.activateDropZone) {
+								props.className += " active";
+							}
+
+							return React.DOM.div(props, this.state.children);
+						}
+					})
+
+					ReactDOM.render(React.DOM.div(null, [
+						React.createElement(DragNode, { key:"drag", className: "drag-box" }),
+						React.createElement(DropNode, { key:"drop", className: "drop-box" })
+					]), document.querySelector("main"));
+
+					// $(document).on("dragstart", "[draggable='true']", function(e) {
+					// 	$(e.target).attr("data-dragging", "true");
+					// });
+
+					// $(document).on("dragover", function(e) {
+					// 	e.preventDefault();
+					// });
+					//
+					// $(document).on("dragenter", "[droppable='true']", function(e) {
+					// 	e.preventDefault();
+					// 	$(e.target).addClass("active");
+					// });
+					//
+					// $(document).on("dragleave", "[droppable='true']", function(e) {
+					// 	e.preventDefault();
+					// 	$(e.target).removeClass("active");
+					// });
+
+					// $(document).on("drop", "[droppable='true']", function(e) {
+					// 	e.preventDefault();
+					// 	$(e.target).append($("[data-dragging]").removeAttr("data-dragging"));
+					// 	$(e.target).removeClass("active");
+					// });
+
+
+				});
+
+		</script>
+
+	</body>
+</html>
