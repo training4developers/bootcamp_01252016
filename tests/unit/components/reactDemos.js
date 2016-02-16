@@ -22,13 +22,13 @@ define([
 			// renders the React Component into a detached DOM node
 			// requires the test to execute within a container which contains a DOM such as a web browser
 			// returns a reference to the rendered component
-			var renderDemoTest = React.addons.TestUtils.renderIntoDocument(React.createElement(RenderDemoTest));
+			var renderDemoTest = TestUtils.renderIntoDocument(React.createElement(RenderDemoTest));
 
 			// retrieves the DOM node where the React Component was rendered
 			var renderDemoTestDOMNode = ReactDOM.findDOMNode(renderDemoTest);
 
 			// examine the DOM to see if the React Component was rendered as expected
-			assert.strictEqual(renderDemoTestDOMNode.textContent, "Hello World!", "initial dom");
+			assert.strictEqual(renderDemoTestDOMNode.textContent, "Hello World!!", "initial dom");
     },
 
 		// unit test
@@ -72,7 +72,7 @@ define([
 			assert.strictEqual(inputDOMNode.value, message, "initial dom");
 
 			// to simulate events such as typing input, first modify the DOM, then trigger the event
-			inputDOMNode.value = "New Value!";
+			inputDOMNode.value = newMessage;
 			TestUtils.Simulate.change(inputDOMNode);
 
 			// props should be immutable; therefore, testing the props did NOT change after an event
